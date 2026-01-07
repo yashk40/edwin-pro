@@ -37,7 +37,7 @@ const Header: React.FC<HeaderProps> = React.memo(({ currentView, onNavigate, onO
               <img
                 src="/Edwenpro.png"
                 alt={CONFIG.company.name}
-                className="h-36  md:h-16 lg:h-48 w-auto object-contain transition-all"
+                className="h-40  md:h-16 lg:h-48 w-auto object-contain transition-all"
               />
             </a>
 
