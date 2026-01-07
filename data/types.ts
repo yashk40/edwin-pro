@@ -3,10 +3,12 @@ export interface Product {
   id: number;
   name: string;
   category: string;
+  series?: string;
   price: number;
   originalPrice?: number;
   image: string;
   description: string;
+  keyFeatures?: string[];
   // New fields for extended product info
   sku?: string; // Specific Stock Keeping Unit ID
   details?: string; // Long form writeup
