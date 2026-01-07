@@ -7,9 +7,9 @@
 export const CONFIG = {
   company: {
     name: "EdwenPro",
-    shortName: "EdwenPro", 
-    logoText: "EDWEN", 
-    logoSubText: "PRO", 
+    shortName: "EdwenPro",
+    logoText: "EDWEN",
+    logoSubText: "PRO",
     tagline: "Premium Kitchen Tandem Hardware",
     description: "EdwenPro is the leading manufacturer of premium Kitchen Tandem Hardware, soft-close drawer systems, and architectural fittings. Upgrade your modular kitchen with EdwenPro.",
     url: "https://edwenpro.com"
@@ -20,7 +20,7 @@ export const CONFIG = {
   },
   // Store Configuration
   store: {
-    showOutOfStockFilter: true, 
+    showOutOfStockFilter: true,
   },
   // Layout Configuration
   layout: {
@@ -29,35 +29,35 @@ export const CONFIG = {
   // Homepage Section Content
   homepage: {
     benefits: [
-      { 
-        title: "Dealer Sync", 
-        description: "Push new product updates to your entire dealer network instantly.", 
-        icon: "users" 
+      {
+        title: "Dealer Sync",
+        description: "Push new product updates to your entire dealer network instantly.",
+        icon: "users"
       },
-      { 
-        title: "QR Standees", 
-        description: "Enable customers to scan shelf items for detailed specs and videos.", 
-        icon: "pin" 
+      {
+        title: "QR Standees",
+        description: "Enable customers to scan shelf items for detailed specs and videos.",
+        icon: "pin"
       },
-      { 
-        title: "Offline Catalog", 
-        description: "Your sales team works in warehouses with zero connectivity.", 
-        icon: "layers" 
+      {
+        title: "Offline Catalog",
+        description: "Your sales team works in warehouses with zero connectivity.",
+        icon: "layers"
       }
     ],
     experience: {
-       title: "EdwenPro In Action",
-       subtitle: "Experience how EdwenPro manages technical specs for Kitchen Tandem Hardware and B2B ordering workflows."
+      title: "EdwenPro In Action",
+      subtitle: "Experience how EdwenPro manages technical specs for Kitchen Tandem Hardware and B2B ordering workflows."
     },
     cta: {
-       titleLabel: "Distributor Ready",
-       title: "Modernize Your\nSupply Chain",
-       description: "Stop printing catalogs that go obsolete in a month. Give your dealers the power of real-time digital inventory.",
-       buttonText: "Launch Hardware Demo"
+      titleLabel: "Distributor Ready",
+      title: "Modernize Your\nSupply Chain",
+      description: "Stop printing catalogs that go obsolete in a month. Give your dealers the power of real-time digital inventory.",
+      buttonText: "Launch Hardware Demo"
     }
   },
   hero: {
-    headline: "Engineered for the Modern Kitchen.", 
+    headline: "Engineered for the Modern Kitchen.",
     subheadline: "Experience the smooth glide of EdwenPro Tandem Hardware. The preferred choice for modular kitchen manufacturers and architects.",
     ctaButton: "Explore Collection",
     // Industrial / Construction Site
@@ -65,7 +65,7 @@ export const CONFIG = {
   },
   contact: {
     phone: "+91 95611 30990",
-    phoneRaw: "+919561130990", 
+    phoneRaw: "+919561130990",
     email: "contact@edwenpro.com",
     address: "EdwenPro Hardware India Pvt Ltd",
     addressMapLink: "https://maps.google.com/?q=EdwenPro",
