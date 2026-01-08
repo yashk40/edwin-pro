@@ -33,11 +33,11 @@ const Header: React.FC<HeaderProps> = React.memo(({ currentView, onNavigate, onO
         <div className="container mx-auto px-4 md:px-8 h-full">
           <div className="flex justify-between items-center h-full relative">
             {/* Logo */}
-            <a href="/" onClick={(e) => handleNavClick(e, 'home')} className="flex flex-col items-start group gap-0.5 md:gap-1">
+            <a href="/" onClick={(e) => handleNavClick(e, 'home')} className="flex items-center group">
               <img
                 src="/Edwenpro.png"
                 alt={CONFIG.company.name}
-                className="h-40  md:h-16 lg:h-48 w-auto object-contain transition-all"
+                className="h-36 md:h-36 lg:h-48 w-auto object-contain transition-all hover:opacity-80"
               />
             </a>
 

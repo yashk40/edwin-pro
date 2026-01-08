@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { 
-    CheckIcon, DiamondIcon, LayersIcon, 
+import {
+    CheckIcon, DiamondIcon, LayersIcon,
     FileTextIcon, ArrowLeftIcon,
     VideoIcon, MonitorIcon, PenToolIcon, ImageIcon
 } from './Icons';
@@ -16,10 +16,10 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
     const [activeImageIndex, setActiveImageIndex] = useState(0);
     const [mediaViewMode, setMediaViewMode] = useState<'photos' | 'drawing'>('photos');
     const [activeTab, setActiveTab] = useState<'overview' | 'specs' | 'pricing'>('overview');
-    
+
     const galleryImages = product.gallery && product.gallery.length > 0 ? product.gallery : [product.image];
     const hasPricing = product.bulkPricing && product.bulkPricing.length > 0;
-    
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [product.id]);
@@ -39,24 +39,24 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
             <div className="container mx-auto px-4 md:px-6 max-w-[1800px]">
                 {/* Navigation / Breadcrumbs */}
                 <div className="flex items-center gap-2 mb-6 text-sm">
-                     <button 
-                        onClick={onBack} 
+                    <button
+                        onClick={onBack}
                         className="text-slate-500 hover:text-slate-900 font-bold flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm transition-colors"
-                     >
+                    >
                         <ArrowLeftIcon className="w-4 h-4" /> Back to Catalog
-                     </button>
-                     <span className="text-slate-300 hidden md:inline">/</span>
-                     <span className="text-slate-500 hidden md:inline">{product.category}</span>
-                     <span className="text-slate-300 hidden md:inline">/</span>
-                     <span className="text-slate-900 font-bold truncate max-w-[200px] hidden md:inline">{product.name}</span>
+                    </button>
+                    <span className="text-slate-300 hidden md:inline">/</span>
+                    <span className="text-slate-500 hidden md:inline">{product.category}</span>
+                    <span className="text-slate-300 hidden md:inline">/</span>
+                    <span className="text-slate-900 font-bold truncate max-w-[200px] hidden md:inline">{product.name}</span>
                 </div>
 
                 {/* Product Layout */}
                 <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col lg:flex-row min-h-[80vh]">
-                    
+
                     {/* Left Column: Media Gallery - Increased width to 60% */}
                     <div className="w-full lg:w-[60%] bg-slate-50/50 flex flex-col relative border-b lg:border-b-0 lg:border-r border-slate-200">
-                        
+
                         {/* Media View Toggles */}
                         {product.installationDrawing && (
                             <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 bg-white/90 backdrop-blur rounded-full p-1 border border-slate-200 shadow-sm flex gap-1">
@@ -78,16 +78,16 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                         {/* Main Media Area */}
                         <div className="relative w-full aspect-square lg:aspect-auto flex-1 bg-white flex items-center justify-center p-8 lg:p-12 overflow-hidden">
                             {mediaViewMode === 'photos' ? (
-                                <img 
-                                    src={galleryImages[activeImageIndex]} 
-                                    alt={product.name} 
-                                    className="w-full h-full object-contain max-h-[70vh] animate-in fade-in duration-300" 
+                                <img
+                                    src={galleryImages[activeImageIndex]}
+                                    alt={product.name}
+                                    className="w-full h-full object-contain max-h-[70vh] animate-in fade-in duration-300"
                                 />
                             ) : (
                                 <div className="w-full h-full flex flex-col items-center justify-center animate-in fade-in zoom-in-95 duration-300">
                                     <div className="relative w-full h-full border-2 border-dashed border-primary-200 rounded-xl bg-primary-50/30 p-4">
-                                        <img 
-                                            src={product.installationDrawing} 
+                                        <img
+                                            src={product.installationDrawing}
                                             alt="Installation Diagram"
                                             className="w-full h-full object-contain mix-blend-multiply opacity-90"
                                         />
@@ -99,18 +99,18 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                                 </div>
                             )}
                         </div>
-            
+
                         {/* Thumbnails - Only show in Photos mode */}
                         {mediaViewMode === 'photos' && galleryImages.length > 1 && (
                             <div className="flex gap-3 p-6 overflow-x-auto bg-slate-50 border-t border-slate-200 no-scrollbar justify-center">
                                 {galleryImages.map((img, idx) => (
-                                <button 
-                                    key={idx} 
-                                    onClick={() => setActiveImageIndex(idx)}
-                                    className={`relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-all ${activeImageIndex === idx ? 'border-primary-500 ring-2 ring-primary-500 ring-offset-2' : 'border-transparent opacity-60 hover:opacity-100 hover:border-slate-300'}`}
-                                >
-                                    <img src={img} className="w-full h-full object-cover" alt="" />
-                                </button>
+                                    <button
+                                        key={idx}
+                                        onClick={() => setActiveImageIndex(idx)}
+                                        className={`relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-all ${activeImageIndex === idx ? 'border-primary-500 ring-2 ring-primary-500 ring-offset-2' : 'border-transparent opacity-60 hover:opacity-100 hover:border-slate-300'}`}
+                                    >
+                                        <img src={img} className="w-full h-full object-cover" alt="" />
+                                    </button>
                                 ))}
                             </div>
                         )}
@@ -127,10 +127,10 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                         </div>
 
                     </div>
-    
+
                     {/* Right Column: Info - Width reduced to 40% */}
                     <div className="w-full lg:w-[40%] flex flex-col">
-                        
+
                         {/* Header */}
                         <div className="p-8 md:p-10 border-b border-slate-100">
                             <div className="flex items-center justify-between mb-4">
@@ -138,12 +138,12 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                                     {product.category}
                                 </span>
                             </div>
-                            
+
                             <h1 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight font-display mb-3">{product.name}</h1>
                             {product.sku && (
                                 <div className="text-sm font-mono text-slate-400 mb-6 bg-slate-50 inline-block px-2 py-1 rounded">SKU: {product.sku}</div>
                             )}
-                            
+
                             <div className="flex items-baseline gap-3 mb-8">
                                 <span className="text-5xl font-bold text-slate-900">₹{product.price.toLocaleString('en-IN')}</span>
                                 {product.originalPrice && (
@@ -177,26 +177,26 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                         <div className="flex-1 p-8 md:p-10 bg-white overflow-y-auto max-h-[600px] custom-scrollbar">
                             {activeTab === 'overview' && (
                                 <div className="space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
-                                    <p className="text-lg text-slate-600 leading-relaxed font-medium">
+                                    <p className="text-xl text-slate-700 leading-relaxed font-semibold">
                                         {product.details || product.description}
                                     </p>
                                     <div className="grid grid-cols-1 gap-4">
                                         {product.features?.map((feature, i) => (
                                             <div key={i} className="flex items-center gap-4 p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-primary-200 transition-colors">
                                                 <div className="bg-white p-2 rounded-full shadow-sm text-primary-600">
-                                                    <CheckIcon className="w-5 h-5" strokeWidth="2.5" />
+                                                    <CheckIcon className="w-6 h-6" strokeWidth="2.5" />
                                                 </div>
-                                                <span className="text-sm font-bold text-slate-700">{feature}</span>
+                                                <span className="text-base font-bold text-slate-700">{feature}</span>
                                             </div>
                                         ))}
                                     </div>
-                                    
+
                                     {/* Video Link */}
                                     {product.videoUrl && (
                                         <div className="pt-6 border-t border-slate-100">
-                                            <a 
-                                                href={product.videoUrl} 
-                                                target="_blank" 
+                                            <a
+                                                href={product.videoUrl}
+                                                target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="flex items-center justify-between px-6 py-4 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold uppercase tracking-wide text-xs transition-all shadow-lg group"
                                             >
@@ -214,13 +214,13 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                             {activeTab === 'specs' && (
                                 <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
                                     {product.specs && product.specs.length > 0 ? (
-                                        <div className="rounded-xl border border-slate-200 overflow-hidden">
-                                            <table className="w-full text-sm text-left">
-                                                <tbody className="divide-y divide-slate-100">
+                                        <div className="rounded-xl border-2 border-slate-300 overflow-hidden shadow-sm">
+                                            <table className="w-full text-base text-left">
+                                                <tbody className="divide-y divide-slate-200">
                                                     {product.specs.map((row, i) => (
                                                         <tr key={i} className="hover:bg-slate-50 transition-colors">
-                                                            <td className="py-4 px-6 font-bold text-slate-500 w-1/3 bg-slate-50/30 border-r border-slate-100">{row.key}</td>
-                                                            <td className="py-4 px-6 font-mono text-slate-700 font-medium">{row.value}</td>
+                                                            <td className="py-5 px-6 font-bold text-slate-600 text-base w-1/3 bg-slate-100 border-r-2 border-slate-200">{row.key}</td>
+                                                            <td className="py-5 px-6 font-mono text-slate-800 font-semibold text-base">{row.value}</td>
                                                         </tr>
                                                     ))}
                                                 </tbody>
