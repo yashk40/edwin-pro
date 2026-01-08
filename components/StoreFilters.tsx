@@ -102,20 +102,20 @@ const StoreFilters: React.FC<StoreFiltersProps> = ({
       />
 
       {/* Materials */}
-      <FilterSection 
+      {/* <FilterSection 
         title="Material" 
         items={materials} 
         selectedItems={selectedMaterials} 
         onToggle={onToggleMaterial} 
-      />
+      /> */}
 
       {/* Colors */}
-      <FilterSection 
+      {/* <FilterSection 
         title="Color" 
         items={colors} 
         selectedItems={selectedColors} 
         onToggle={onToggleColor} 
-      />
+      /> */}
 
       {/* Price Range */}
       <div className="space-y-4">

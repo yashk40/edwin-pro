@@ -1,6 +1,7 @@
 
-import React, { useState, useEffect, Suspense, lazy, startTransition, useCallback } from 'react';
-import Header, { ViewState } from './components/Header';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import Header from './components/Header';
 import Footer from './components/Footer';
 import BottomNav from './components/BottomNav';
 import Home from './components/Home';
@@ -11,21 +12,23 @@ import { useSettings } from './contexts/SettingsContext';
 import { getProducts } from './utils/productManager';
 import { Product } from './data';
 
-// Lazy load heavy view components to speed up initial load
+// Lazy load heavy view components
 const Store = lazy(() => import('./components/Store'));
 const Contact = lazy(() => import('./components/Contact'));
 const SettingsModal = lazy(() => import('./components/SettingsModal'));
 const AdminPanel = lazy(() => import('./components/AdminPanel'));
+const ProductRoute = lazy(() => import('./components/ProductRoute'));
 
 const App: React.FC = () => {
-  const [currentView, setCurrentView] = useState<ViewState | 'admin'>('home');
-  const [storeCategory, setStoreCategory] = useState('All');
+  const location = useLocation();
+  const navigate = useNavigate();
 
+  const [storeCategory, setStoreCategory] = useState('All');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isFullScreenModalOpen, setIsFullScreenModalOpen] = useState(false);
   const { features } = useSettings();
 
-  // Products State (Dynamic)
+  // Products State
   const [products, setProducts] = useState<Product[]>([]);
 
   // Load products on mount
@@ -37,27 +40,7 @@ const App: React.FC = () => {
     setProducts(updatedProducts);
   };
 
-  // Handle Hash Navigation
-  useEffect(() => {
-    const handleHash = () => {
-      const hash = window.location.hash.substring(1);
-
-      if (hash === 'admin') {
-        setCurrentView('admin');
-        return;
-      }
-
-      if (['home', 'store', 'contact'].includes(hash)) {
-        setCurrentView(hash as ViewState);
-      }
-    };
-
-    handleHash(); // Check on mount
-    window.addEventListener('hashchange', handleHash);
-    return () => window.removeEventListener('hashchange', handleHash);
-  }, []);
-
-  // Dynamic Title Update, Theme, and Mobile Performance Optimization
+  // Dynamic Title Update
   useEffect(() => {
     document.title = `${CONFIG.company.name} | ${CONFIG.company.tagline}`;
 
@@ -72,7 +55,7 @@ const App: React.FC = () => {
       effectiveTheme = 'dark';
     } else if (savedTheme === 'system') {
       effectiveTheme = systemPrefersDark ? 'dark' : 'light';
-    } else { // savedTheme is 'light' or null (default to light)
+    } else {
       effectiveTheme = 'light';
     }
 
@@ -83,78 +66,30 @@ const App: React.FC = () => {
     }
 
     // Performance: Detect Mobile/Low-Power devices and disable Glassmorphism
-    // CSS Backdrop-filter is very GPU intensive on mobile devices
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     if (isMobile) {
       document.body.classList.add('disable-glass');
     }
-
-  }, []);
-
-  // Navigation Handler with Transition for smoothness
-  const handleNavigate = useCallback((view: ViewState | 'admin') => {
-    startTransition(() => {
-      // If navigating to store via generic nav, reset filter to 'All'
-      if (view === 'store') {
-        setStoreCategory('All');
-      }
-      setCurrentView(view);
-      window.scrollTo(0, 0);
-    });
   }, []);
 
   // Handler for opening a specific category from Home
-  const handleCategorySelect = useCallback((category: string) => {
-    startTransition(() => {
-      setStoreCategory(category);
-      setCurrentView('store');
-      window.scrollTo(0, 0);
-    });
-  }, []);
-
-  const renderView = () => {
-    switch (currentView) {
-      case 'home':
-        return (
-          <Home
-            products={products}
-            onNavigate={handleNavigate}
-            onCategorySelect={handleCategorySelect}
-            onModalToggle={setIsFullScreenModalOpen}
-          />
-        );
-      case 'store':
-        return (
-          <Store
-            products={products}
-            onNavigate={handleNavigate}
-            onModalToggle={setIsFullScreenModalOpen}
-            initialCategory={storeCategory}
-          />
-        );
-      case 'contact':
-        return <Contact onNavigate={handleNavigate} />;
-      case 'admin':
-        return (
-          <AdminPanel
-            products={products}
-            onUpdate={handleProductUpdate}
-            onBack={() => handleNavigate('home')}
-          />
-        );
-      default:
-        return (
-          <Home
-            products={products}
-            onNavigate={handleNavigate}
-            onCategorySelect={handleCategorySelect}
-            onModalToggle={setIsFullScreenModalOpen}
-          />
-        );
-    }
+  const handleCategorySelect = (category: string) => {
+    setStoreCategory(category);
+    navigate('/catalog');
+    window.scrollTo(0, 0);
   };
 
-  // Check if any modal is open to hide bottom nav, AND check feature flag
+  // Determine current view from location
+  const getCurrentView = () => {
+    if (location.pathname === '/') return 'home';
+    if (location.pathname.startsWith('/catalog')) return 'store';
+    if (location.pathname === '/contact') return 'contact';
+    if (location.pathname === '/admin') return 'admin';
+    if (location.pathname.startsWith('/product')) return 'store'; // Highlight catalog for product pages
+    return 'home';
+  };
+
+  const currentView = getCurrentView();
   const shouldShowBottomNav = features.enableMobileBottomNav && !isFullScreenModalOpen && !isSettingsOpen && currentView !== 'admin';
 
   return (
@@ -165,45 +100,93 @@ const App: React.FC = () => {
         {isSettingsOpen && (
           <SettingsModal
             onClose={() => setIsSettingsOpen(false)}
-            onNavigate={handleNavigate}
+            onNavigate={(view) => {
+              setIsSettingsOpen(false);
+              if (view === 'admin') navigate('/admin');
+              else navigate(view === 'home' ? '/' : `/${view}`);
+            }}
           />
         )}
       </Suspense>
 
-      {/* Hide Header on Admin Page */}
-      {currentView !== 'admin' && (
-        <Header
-          currentView={currentView as ViewState}
-          onNavigate={handleNavigate}
-          onOpenSettings={() => setIsSettingsOpen(true)}
-        />
-      )}
+      {/* Header */}
+      <Header
+        currentView={currentView}
+        onNavigate={(view) => navigate(view === 'home' ? '/' : `/${view}`)}
+        onOpenSettings={() => setIsSettingsOpen(true)}
+      />
 
-      <main>
+      {/* Main Content with Routes */}
+      <main className="min-h-screen">
         <Suspense fallback={<LoadingScreen />}>
-          {renderView()}
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  products={products}
+                  onNavigate={(view) => navigate(view === 'home' ? '/' : `/${view}`)}
+                  onCategorySelect={handleCategorySelect}
+                  onModalToggle={setIsFullScreenModalOpen}
+                />
+              }
+            />
+            <Route
+              path="/catalog"
+              element={
+                <Store
+                  products={products}
+                  onNavigate={(view) => navigate(view === 'home' ? '/' : `/${view}`)}
+                  onModalToggle={setIsFullScreenModalOpen}
+                  initialCategory={storeCategory}
+                />
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <Contact onNavigate={(view) => navigate(view === 'home' ? '/' : `/${view}`)} />
+              }
+            />
+            <Route
+              path="/catalog/:productSlug"
+              element={<ProductRoute products={products} />}
+            />
+            <Route
+              path="/admin"
+              element={
+                <AdminPanel
+                  products={products}
+                  onUpdate={handleProductUpdate}
+                  onBack={() => navigate('/')}
+                />
+              }
+            />
+          </Routes>
         </Suspense>
       </main>
 
-      {currentView !== 'admin' && <Footer onNavigate={handleNavigate} />}
+      {/* Footer */}
+      <Footer onNavigate={(view) => navigate(view === 'home' ? '/' : `/${view}`)} />
 
+      {/* Bottom Nav (Mobile) */}
       {shouldShowBottomNav && (
-        <BottomNav currentView={currentView as ViewState} onNavigate={handleNavigate} />
+        <BottomNav
+          currentView={currentView}
+          onNavigate={(view) => navigate(view === 'home' ? '/' : `/${view}`)}
+        />
       )}
 
-      {/* Floating WhatsApp - Hide on Admin */}
-      {currentView !== 'admin' && (
-        <a
-          href={`https://wa.me/${CONFIG.contact.phoneRaw.replace('+', '')}?text=${encodeURIComponent(`Hi ${CONFIG.company.name}, I found your digital catalog and would like to know more.`)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`fixed right-4 md:bottom-8 md:right-8 bg-[#25D366] text-white p-3.5 rounded-full shadow-xl hover:scale-105 transition-transform z-50 flex items-center justify-center group ${shouldShowBottomNav ? 'bottom-24' : 'bottom-8'}`}
-          aria-label="Chat on WhatsApp"
-        >
-          <MessageCircleIcon className="h-7 w-7 fill-current" />
-        </a>
-      )}
-
+      {/* WhatsApp FAB */}
+      <a
+        href={`https://wa.me/${CONFIG.contact.phoneRaw.replace(/[^0-9]/g, '')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-30 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transform hover:scale-110 transition-all duration-300"
+        aria-label="Contact us on WhatsApp"
+      >
+        <MessageCircleIcon className="w-6 h-6" />
+      </a>
     </div>
   );
 };

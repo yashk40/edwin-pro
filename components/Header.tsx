@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { SettingsIcon } from './Icons';
 import { CONFIG } from '../config';
 import Tooltip from './Tooltip';
@@ -7,23 +8,32 @@ import Tooltip from './Tooltip';
 export type ViewState = 'home' | 'store' | 'contact';
 
 interface HeaderProps {
-  currentView: ViewState;
+  currentView: ViewState | 'admin';
   onNavigate: (view: ViewState) => void;
   onOpenSettings?: () => void;
 }
 
 const Header: React.FC<HeaderProps> = React.memo(({ currentView, onNavigate, onOpenSettings }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const navLinks: { name: string; id: ViewState; enabled: boolean }[] = [
-    { name: 'Home', id: 'home', enabled: true },
-    { name: 'Catalog', id: 'store', enabled: true },
+  const navLinks: { name: string; path: string; id: ViewState }[] = [
+    { name: 'Home', path: '/', id: 'home' },
+    { name: 'Catalog', path: '/catalog', id: 'store' },
   ];
 
-  const handleNavClick = (e: React.MouseEvent, id: ViewState) => {
+  const handleNavClick = (e: React.MouseEvent, path: string, id: ViewState) => {
     e.preventDefault();
-    onNavigate(id);
-    if (id === 'home') {
+
+    // If clicking the same route, force navigation with a new key
+    if (location.pathname === path) {
+      navigate(path, { replace: true, state: { refresh: Date.now() } });
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      navigate(path);
+      if (id === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
   };
 
@@ -33,41 +43,45 @@ const Header: React.FC<HeaderProps> = React.memo(({ currentView, onNavigate, onO
         <div className="container mx-auto px-4 md:px-8 h-full">
           <div className="flex justify-between items-center h-full relative">
             {/* Logo */}
-            <a href="/" onClick={(e) => handleNavClick(e, 'home')} className="flex items-center group">
+            <NavLink to="/" onClick={(e) => handleNavClick(e, '/', 'home')} className="flex items-center group">
               <img
                 src="/Edwenpro.png"
                 alt={CONFIG.company.name}
-                className="h-36 md:h-36 lg:h-48 w-auto object-contain transition-all hover:opacity-80"
+                className="h-12 md:h-26 lg:h-16 w-auto object-contain transition-all hover:opacity-80"
               />
-            </a>
+            </NavLink>
 
             {/* Desktop/Tablet Nav */}
             <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-5 lg:gap-8">
-              {navLinks.filter(link => link.enabled).map((link) => (
-                <a
-                  key={link.name}
-                  href={`#${link.id}`}
-                  onClick={(e) => handleNavClick(e, link.id)}
-                  className={`relative transition-colors duration-200 font-bold text-xs lg:text-sm uppercase tracking-wider group ${currentView === link.id
-                    ? 'text-primary-600 dark:text-primary-400'
-                    : 'text-slate-600 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-400'
-                    }`}
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.path}
+                  to={link.path}
+                  onClick={(e) => handleNavClick(e, link.path, link.id)}
+                  className={({ isActive }) =>
+                    `relative transition-colors duration-200 font-bold text-xs lg:text-sm uppercase tracking-wider group ${isActive
+                      ? 'text-primary-600 dark:text-primary-400'
+                      : 'text-slate-600 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-400'
+                    }`
+                  }
                 >
                   {link.name}
                   <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-primary-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${currentView === link.id ? 'scale-x-100' : ''}`}></span>
-                </a>
+                </NavLink>
               ))}
-              <a
-                href="#contact"
-                onClick={(e) => handleNavClick(e, 'contact')}
-                className={`relative transition-colors duration-200 font-bold text-xs lg:text-sm uppercase tracking-wider group ${currentView === 'contact'
-                  ? 'text-primary-600 dark:text-primary-400'
-                  : 'text-slate-600 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-400'
-                  }`}
+              <NavLink
+                to="/contact"
+                onClick={(e) => handleNavClick(e, '/contact', 'contact')}
+                className={({ isActive }) =>
+                  `relative transition-colors duration-200 font-bold text-xs lg:text-sm uppercase tracking-wider group ${isActive
+                    ? 'text-primary-600 dark:text-primary-400'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-400'
+                  }`
+                }
               >
                 Contact
                 <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-primary-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${currentView === 'contact' ? 'scale-x-100' : ''}`}></span>
-              </a>
+              </NavLink>
             </nav>
 
             {/* Right Actions */}
@@ -85,7 +99,7 @@ const Header: React.FC<HeaderProps> = React.memo(({ currentView, onNavigate, onO
 
               {/* Mobile 'Get Quote' Button */}
               <button
-                onClick={() => onNavigate('contact')}
+                onClick={() => navigate('/contact')}
                 className="md:hidden bg-primary-600 text-white text-xs font-bold px-3 py-2 rounded shadow-sm uppercase tracking-wider"
               >
                 Get<br />Quote

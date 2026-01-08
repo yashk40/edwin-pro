@@ -1,13 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ViewState } from './Header';
 import FadeIn from './FadeIn';
 import { Product } from '../data';
 import { useProductFilter } from '../hooks/useProductFilter';
 import { StoreProductCard } from './StoreProductCard';
 import StoreFilters from './StoreFilters';
-import ProductPage from './ProductPage';
 import { SearchIcon, FilterIcon, XIcon, ChevronLeftIcon, ChevronRightIcon } from './Icons';
+
+import { createSlug } from '../utils/slugUtils';
 
 interface StoreProps {
     products: Product[];
@@ -17,7 +19,7 @@ interface StoreProps {
 }
 
 const Store: React.FC<StoreProps> = ({ products, onNavigate, onModalToggle, initialCategory = 'All' }) => {
-    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+    const navigate = useNavigate();
     const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
     const {
@@ -42,26 +44,16 @@ const Store: React.FC<StoreProps> = ({ products, onNavigate, onModalToggle, init
         resetFilters
     } = useProductFilter(products, initialCategory);
 
-    // Notify parent when product page is active
-    useEffect(() => {
-        onModalToggle?.(!!selectedProduct);
-        return () => onModalToggle?.(false);
-    }, [selectedProduct, onModalToggle]);
-
     // Handle Scroll to top on page change
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [currentPage]);
 
-    // Product Page View
-    if (selectedProduct) {
-        return (
-            <ProductPage
-                product={selectedProduct}
-                onBack={() => setSelectedProduct(null)}
-            />
-        );
-    }
+    // Handler for product click
+    const handleProductClick = (product: Product) => {
+        navigate(`/catalog/${createSlug(product.name)}`);
+        window.scrollTo(0, 0);
+    };
 
     const PaginationControls = () => {
         if (totalPages <= 1) return null;
@@ -136,13 +128,15 @@ const Store: React.FC<StoreProps> = ({ products, onNavigate, onModalToggle, init
                 {/* Breadcrumb Navigation */}
                 <div className="flex items-center gap-2 mb-6 text-sm">
                     <button
-                        onClick={() => onNavigate('home')}
+
+                        onClick={() => navigate('/')}
                         className="text-slate-500 hover:text-slate-900 font-bold flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm transition-colors"
                     >
                         <ChevronLeftIcon className="w-4 h-4" /> Back to Home
                     </button>
-                    <span className="text-slate-300 hidden md:inline">/</span>
-                    <span className="text-slate-900 font-bold hidden md:inline">Product Catalog</span>
+                    <span className="text-slate-300">/</span>
+                    <p style={{ 
+                         color: 'black' }} >Product Catalog</p>
                 </div>
 
                 <div className="flex flex-col lg:flex-row gap-8 items-start">
@@ -241,7 +235,7 @@ const Store: React.FC<StoreProps> = ({ products, onNavigate, onModalToggle, init
                                         <FadeIn key={product.id}>
                                             <StoreProductCard
                                                 product={product}
-                                                onClick={setSelectedProduct}
+                                                onClick={handleProductClick}
                                             />
                                         </FadeIn>
                                     ))}

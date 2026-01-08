@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
     CheckIcon, DiamondIcon, LayersIcon,
     FileTextIcon, ArrowLeftIcon,
@@ -13,6 +14,7 @@ interface ProductPageProps {
 }
 
 const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
+    const navigate = useNavigate();
     const [activeImageIndex, setActiveImageIndex] = useState(0);
     const [mediaViewMode, setMediaViewMode] = useState<'photos' | 'drawing'>('photos');
     const [activeTab, setActiveTab] = useState<'overview' | 'specs' | 'pricing'>('overview');
@@ -38,17 +40,20 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
             {/* Increased Container Width from 7xl to 1800px for larger layout */}
             <div className="container mx-auto px-4 md:px-6 max-w-[1800px]">
                 {/* Navigation / Breadcrumbs */}
-                <div className="flex items-center gap-2 mb-6 text-sm">
+                <div className="flex items-center gap-2 mb-6 text-sm relative z-50">
                     <button
-                        onClick={onBack}
-                        className="text-slate-500 hover:text-slate-900 font-bold flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm transition-colors"
+                        onClick={() => {
+                            console.log('ProductPage: Back button clicked - navigating to /catalog');
+                            navigate('/catalog');
+                        }}
+                        className="text-slate-500 hover:text-slate-900 font-bold flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm transition-colors cursor-pointer"
                     >
-                        <ArrowLeftIcon className="w-4 h-4" /> Back to Catalog
+                        <ArrowLeftIcon className="w-4 h-4" /> Back
                     </button>
-                    <span className="text-slate-300 hidden md:inline">/</span>
-                    <span className="text-slate-500 hidden md:inline">{product.category}</span>
-                    <span className="text-slate-300 hidden md:inline">/</span>
-                    <span className="text-slate-900 font-bold truncate max-w-[200px] hidden md:inline">{product.name}</span>
+                    <span className="text-slate-300 hidden md:inline" style={{ cursor: "default" }}>/</span>
+                    <span className="text-slate-500 hidden md:inline" style={{ cursor: "default" }}>{product.category}</span>
+                    <span className="text-slate-300 hidden md:inline" style={{ cursor: "default" }}>/</span>
+                    <span className="text-slate-900 font-bold truncate max-w-[200px] hidden md:inline" style={{ cursor: "default" }}>{product.name}</span>
                 </div>
 
                 {/* Product Layout */}
