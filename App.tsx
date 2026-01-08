@@ -61,10 +61,22 @@ const App: React.FC = () => {
   useEffect(() => {
     document.title = `${CONFIG.company.name} | ${CONFIG.company.tagline}`;
 
-    // Initialize Theme
+    // Theme Init - always default to light mode
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | 'system' | null;
     const root = document.documentElement;
-    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) || (savedTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    let effectiveTheme: 'light' | 'dark';
+
+    if (savedTheme === 'dark') {
+      effectiveTheme = 'dark';
+    } else if (savedTheme === 'system') {
+      effectiveTheme = systemPrefersDark ? 'dark' : 'light';
+    } else { // savedTheme is 'light' or null (default to light)
+      effectiveTheme = 'light';
+    }
+
+    if (effectiveTheme === 'dark') {
       root.classList.add('dark');
     } else {
       root.classList.remove('dark');
