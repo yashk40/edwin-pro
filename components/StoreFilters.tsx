@@ -14,53 +14,53 @@ interface StoreFiltersProps {
   colors: { name: string; count: number }[];
   selectedColors: string[];
   onToggleColor: (color: string) => void;
-  
+
   priceRange: { min: string; max: string };
   onPriceChange: (type: 'min' | 'max', value: string) => void;
-  
+
   showOutOfStock: boolean;
   onToggleStock: () => void;
-  
+
   onClearAll: () => void;
 }
 
 const FilterSection: React.FC<{
-    title: string;
-    items: { name: string; count: number }[];
-    selectedItems: string[];
-    onToggle: (item: string) => void;
+  title: string;
+  items: { name: string; count: number }[];
+  selectedItems: string[];
+  onToggle: (item: string) => void;
 }> = ({ title, items, selectedItems, onToggle }) => (
-    <div className="space-y-3">
-        <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">{title}</h4>
-        <div className="space-y-2 max-h-[200px] overflow-y-auto custom-scrollbar pr-2">
-            {items.map((item) => {
-                const isSelected = selectedItems.includes(item.name);
-                return (
-                    <label 
-                        key={item.name} 
-                        className="flex items-center justify-between group cursor-pointer select-none py-1"
-                    >
-                        <div className="flex items-center gap-3">
-                            <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${isSelected ? 'bg-slate-900 border-slate-900' : 'bg-white border-slate-300 group-hover:border-primary-500'}`}>
-                                {isSelected && <CheckIcon className="w-3.5 h-3.5 text-white" strokeWidth="3" />}
-                            </div>
-                            <span className={`text-sm font-medium transition-colors ${isSelected ? 'text-slate-900 font-bold' : 'text-slate-600 group-hover:text-slate-900'}`}>
-                                {item.name}
-                            </span>
-                        </div>
-                        <span className="text-xs text-slate-400 font-mono bg-slate-50 px-2 py-0.5 rounded-full">{item.count}</span>
-                        
-                        <input 
-                            type="checkbox" 
-                            className="hidden"
-                            checked={isSelected}
-                            onChange={() => onToggle(item.name)}
-                        />
-                    </label>
-                );
-            })}
-        </div>
+  <div className="space-y-3">
+    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">{title}</h4>
+    <div className="space-y-2 max-h-[200px] overflow-y-auto custom-scrollbar pr-2">
+      {items.map((item) => {
+        const isSelected = selectedItems.includes(item.name);
+        return (
+          <label
+            key={item.name}
+            className="flex items-center justify-between group cursor-pointer select-none py-1"
+          >
+            <div className="flex items-center gap-3">
+              <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${isSelected ? 'bg-slate-900 border-slate-900' : 'bg-white border-slate-300 group-hover:border-primary-500'}`}>
+                {isSelected && <CheckIcon className="w-3.5 h-3.5 text-white" strokeWidth="3" />}
+              </div>
+              <span className={`text-sm font-medium transition-colors ${isSelected ? 'text-slate-900 font-bold' : 'text-slate-600 group-hover:text-slate-900'}`}>
+                {item.name}
+              </span>
+            </div>
+            <span className="text-xs text-slate-400 font-mono bg-slate-50 px-2 py-0.5 rounded-full">{item.count}</span>
+
+            <input
+              type="checkbox"
+              className="hidden"
+              checked={isSelected}
+              onChange={() => onToggle(item.name)}
+            />
+          </label>
+        );
+      })}
     </div>
+  </div>
 );
 
 const StoreFilters: React.FC<StoreFiltersProps> = ({
@@ -81,24 +81,24 @@ const StoreFilters: React.FC<StoreFiltersProps> = ({
 }) => {
   return (
     <div className="space-y-8">
-      
+
       {/* Header */}
       <div className="flex items-center justify-between pb-4 border-b border-slate-200">
-          <h3 className="font-bold text-slate-900 font-display text-lg">Filters</h3>
-          <button 
-            onClick={onClearAll}
-            className="text-xs font-bold text-primary-600 uppercase tracking-wider hover:text-primary-700 hover:underline"
-          >
-            Clear All
-          </button>
+        <h3 className="font-bold text-slate-900 font-display text-lg">Filters</h3>
+        <button
+          onClick={onClearAll}
+          className="text-xs font-bold text-primary-600 uppercase tracking-wider hover:text-primary-700 hover:underline"
+        >
+          Clear All
+        </button>
       </div>
 
       {/* Categories */}
-      <FilterSection 
-        title="Categories" 
-        items={categories} 
-        selectedItems={selectedCategories} 
-        onToggle={onToggleCategory} 
+      <FilterSection
+        title="Categories"
+        items={categories}
+        selectedItems={selectedCategories}
+        onToggle={onToggleCategory}
       />
 
       {/* Materials */}
@@ -118,7 +118,7 @@ const StoreFilters: React.FC<StoreFiltersProps> = ({
       /> */}
 
       {/* Price Range */}
-      <div className="space-y-4">
+      {/* <div className="space-y-4">
         <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">Price Range (₹)</h4>
         <div className="flex items-center gap-2">
             <div className="relative flex-1">
@@ -143,22 +143,22 @@ const StoreFilters: React.FC<StoreFiltersProps> = ({
                 />
             </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Stock Availability */}
       <div className="space-y-4 pt-4 border-t border-slate-100">
         <label className="flex items-center justify-between cursor-pointer group">
-            <span className="text-sm font-bold text-slate-700 group-hover:text-slate-900">Include Out of Stock</span>
-            <div className="relative">
-                <input 
-                    type="checkbox" 
-                    className="sr-only" 
-                    checked={showOutOfStock}
-                    onChange={onToggleStock}
-                />
-                <div className={`block w-10 h-6 rounded-full transition-colors duration-200 ${showOutOfStock ? 'bg-primary-500' : 'bg-slate-200'}`}></div>
-                <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-200 ${showOutOfStock ? 'translate-x-4' : 'translate-x-0'} shadow-sm`}></div>
-            </div>
+          <span className="text-sm font-bold text-slate-700 group-hover:text-slate-900">Include Out of Stock</span>
+          <div className="relative">
+            <input
+              type="checkbox"
+              className="sr-only"
+              checked={showOutOfStock}
+              onChange={onToggleStock}
+            />
+            <div className={`block w-10 h-6 rounded-full transition-colors duration-200 ${showOutOfStock ? 'bg-primary-500' : 'bg-slate-200'}`}></div>
+            <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-200 ${showOutOfStock ? 'translate-x-4' : 'translate-x-0'} shadow-sm`}></div>
+          </div>
         </label>
       </div>
 

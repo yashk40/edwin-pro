@@ -135,8 +135,9 @@ const Store: React.FC<StoreProps> = ({ products, onNavigate, onModalToggle, init
                         <ChevronLeftIcon className="w-4 h-4" /> Back to Home
                     </button>
                     <span className="text-slate-300">/</span>
-                    <p style={{ 
-                         color: 'black' }} >Product Catalog</p>
+                    <p style={{
+                        color: 'black'
+                    }} >Product Catalog</p>
                 </div>
 
                 <div className="flex flex-col lg:flex-row gap-8 items-start">
@@ -192,7 +193,7 @@ const Store: React.FC<StoreProps> = ({ products, onNavigate, onModalToggle, init
                             </div>
 
                             {/* Active Filters Display */}
-                            {(selectedCategories.length > 0 || selectedMaterials.length > 0 || selectedColors.length > 0 || priceRange.min || priceRange.max) && (
+                            {(selectedCategories.length > 0 || selectedMaterials.length > 0 || selectedColors.length > 0 || showOutOfStock) && (
                                 <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-100">
                                     {selectedCategories.map(cat => (
                                         <button key={cat} onClick={() => toggleCategory(cat)} className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-800 text-white rounded-full text-xs font-bold uppercase hover:bg-slate-700 transition-colors">
@@ -209,11 +210,11 @@ const Store: React.FC<StoreProps> = ({ products, onNavigate, onModalToggle, init
                                             {col} <XIcon className="w-3 h-3" />
                                         </button>
                                     ))}
-                                    {(priceRange.min || priceRange.max) && (
-                                        <button onClick={() => setPriceRange({ min: '', max: '' })} className="inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-slate-300 text-slate-600 rounded-full text-xs font-bold uppercase hover:bg-slate-50 transition-colors">
-                                            Price: {priceRange.min || 0} - {priceRange.max || 'Any'} <XIcon className="w-3 h-3" />
-                                        </button>
-                                    )}
+                                    {/* {showOutOfStock && (
+                                        // <button onClick={() => setShowOutOfStock(false)} className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-600 text-white rounded-full text-xs font-bold uppercase hover:bg-emerald-700 transition-colors">
+                                        //     Include Out of Stock <XIcon className="w-3 h-3" />
+                                        // </button>
+                                    )} */}
                                 </div>
                             )}
                         </div>
