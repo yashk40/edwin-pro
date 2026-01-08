@@ -179,7 +179,7 @@ const Store: React.FC<StoreProps> = ({ products, onNavigate, onModalToggle, init
                                     </button>
 
                                     {/* Sort */}
-                                    <select
+                                    {/* <select
                                         value={sort}
                                         onChange={(e) => setSort(e.target.value)}
                                         className="flex-1 md:w-48 px-4 py-3 border border-slate-200 rounded-xl bg-white text-sm font-bold text-slate-700 focus:ring-2 focus:ring-primary-500 focus:outline-none cursor-pointer"
@@ -188,12 +188,12 @@ const Store: React.FC<StoreProps> = ({ products, onNavigate, onModalToggle, init
                                         <option value="newest">Newest Arrivals</option>
                                         <option value="price-asc">Price: Low to High</option>
                                         <option value="price-desc">Price: High to Low</option>
-                                    </select>
+                                    </select> */}
                                 </div>
                             </div>
 
                             {/* Active Filters Display */}
-                            {(selectedCategories.length > 0 || selectedMaterials.length > 0 || selectedColors.length > 0 || showOutOfStock) && (
+                            {(selectedCategories.length > 0 || selectedMaterials.length > 0 || selectedColors.length > 0 ) && (
                                 <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-100">
                                     {selectedCategories.map(cat => (
                                         <button key={cat} onClick={() => toggleCategory(cat)} className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-800 text-white rounded-full text-xs font-bold uppercase hover:bg-slate-700 transition-colors">

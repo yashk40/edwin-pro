@@ -146,7 +146,7 @@ const StoreFilters: React.FC<StoreFiltersProps> = ({
       </div> */}
 
       {/* Stock Availability */}
-      <div className="space-y-4 pt-4 border-t border-slate-100">
+      {/* <div className="space-y-4 pt-4 border-t border-slate-100">
         <label className="flex items-center justify-between cursor-pointer group">
           <span className="text-sm font-bold text-slate-700 group-hover:text-slate-900">Include Out of Stock</span>
           <div className="relative">
@@ -160,7 +160,7 @@ const StoreFilters: React.FC<StoreFiltersProps> = ({
             <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-200 ${showOutOfStock ? 'translate-x-4' : 'translate-x-0'} shadow-sm`}></div>
           </div>
         </label>
-      </div>
+      </div> */}
 
     </div>
   );
