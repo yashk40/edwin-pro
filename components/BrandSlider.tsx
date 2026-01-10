@@ -2,14 +2,15 @@
 import React from 'react';
 
 const brands = [
-  "Titan Power Tools",
-  "BuildRight Supply",
-  "Ace Hardware",
-  "SafeGuard Industrial",
-  "Vertex Architectural",
-  "Global Fasteners",
-  "Miller Industrial",
-  "Apex Fittings"
+  "Slim Tandom System",
+  "Slim Drawer System",
+  "Drawer Organizers",
+  "Pantry Units",
+  "Corner Units",
+  "Pullouts",
+  "Drawer Slides",
+  "Rolling Shutters",
+  "Drawer Accessories"
 ];
 
 const BrandSlider: React.FC = () => {

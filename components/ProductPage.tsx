@@ -172,7 +172,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                                 <button
                                     key={tab.id}
                                     onClick={() => setActiveTab(tab.id as any)}
-                                    className={`flex-1 py-5 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 border-b-2 transition-colors ${activeTab === tab.id ? 'border-primary-500 text-primary-700 bg-white' : 'border-transparent text-slate-500 hover:text-slate-700 hover:bg-slate-100'}`}
+                                    className={`flex-1 py-5 text-sm font-extrabold uppercase tracking-widest flex items-center justify-center gap-2 border-b-4 transition-all ${activeTab === tab.id ? 'border-amber-500 text-amber-600 bg-amber-50/50' : 'border-transparent text-slate-600 hover:text-slate-800 hover:bg-slate-100'}`}
                                 >
                                     <tab.icon className="w-4 h-4" /> {tab.label}
                                 </button>
