@@ -9,9 +9,9 @@ const BannerSlider: React.FC = memo(() => {
 
     // Optimized background images with WebP format and compression
     const backgroundImages = [
-        'public/banner.jpg',
-        'public/banner2.jpg',
-        'public/banner3.jpg',
+        './banner.jpg',
+        './banner2.jpg',
+        './banner3.jpg',
     ];
     const slides = backgroundImages.length;
     useEffect(() => {
