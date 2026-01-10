@@ -9,13 +9,11 @@ const BannerSlider: React.FC = memo(() => {
 
     // Optimized background images with WebP format and compression
     const backgroundImages = [
-        'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1920&q=75&fm=webp',
-        'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1920&q=75&fm=webp',
-        'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1920&q=75&fm=webp',
+        'public/banner.avif',
+        'public/banner2.avif',
+        'public/banner3.avif',
     ];
     const slides = backgroundImages.length;
-
-    // Auto-rotate carousel
     useEffect(() => {
         if (isPaused) return;
 
