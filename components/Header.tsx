@@ -47,7 +47,7 @@ const Header: React.FC<HeaderProps> = React.memo(({ currentView, onNavigate, onO
               <img
                 src="/Edwenpro.png"
                 alt={CONFIG.company.name}
-                className="h-12 md:h-26 lg:h-16 w-auto object-contain transition-all hover:opacity-80"
+                className="h-12 md:h-14 lg:h-16 w-auto object-contain transition-all hover:opacity-80"
               />
             </NavLink>
 

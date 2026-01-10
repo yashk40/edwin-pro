@@ -41,7 +41,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
             {/* Increased Container Width from 7xl to 1800px for larger layout */}
             <div className="container mx-auto px-4 md:px-6 max-w-[1800px]">
                 {/* Navigation / Breadcrumbs */}
-                <div className="flex items-center gap-2 mb-6 text-sm relative z-50">
+                <div className="flex items-center gap-2 mb-6 text-sm relative z-0">
                     <button
                         onClick={() => {
                             console.log('ProductPage: Back button clicked - navigating to /catalog');
