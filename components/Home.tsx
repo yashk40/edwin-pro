@@ -32,8 +32,8 @@ const getFeatureIcon = (iconName: string) => {
     }
 };
 
-// Fallback image in case Unsplash link breaks
-const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80';
+// Fallback image in case Unsplash link breaks - optimized with WebP
+const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=75&fm=webp';
 
 const Home: React.FC<HomeProps> = ({ products, onNavigate, onCategorySelect }) => {
 
@@ -69,7 +69,13 @@ const Home: React.FC<HomeProps> = ({ products, onNavigate, onCategorySelect }) =
                 <div className="container mx-auto px-6 py-12 md:py-16">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 max-w-7xl mx-auto">
                         {CONFIG.stats.map((stat, index) => (
-                            <div key={index} className="text-center group cursor-default">
+                            <div
+                                key={index}
+                                className="text-center group cursor-default"
+                                data-aos="zoom-in"
+                                data-aos-delay={index * 100}
+                                data-aos-duration="600"
+                            >
                                 <div className="flex items-center justify-center mb-3 text-primary-600 opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
                                     {getFeatureIcon(stat.icon)}
                                 </div>
@@ -84,7 +90,7 @@ const Home: React.FC<HomeProps> = ({ products, onNavigate, onCategorySelect }) =
             {/* CATEGORIES SECTION */}
             <section className="py-24 md:py-32 bg-white rounded-t-[3rem] shadow-[0_-20px_40px_-15px_rgba(255,192,0,0.1)] relative z-10">
                 <div className="container mx-auto px-6 max-w-7xl">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
+                    <div className="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up" data-aos-duration="800">
                         <span className="text-primary-600 font-bold tracking-[0.2em] text-xs uppercase mb-3 block">Catalog</span>
                         <h2 className="text-3xl md:text-5xl font-bold text-slate-900 font-display mb-6">
                             Shop by Category
@@ -99,17 +105,21 @@ const Home: React.FC<HomeProps> = ({ products, onNavigate, onCategorySelect }) =
                         {homeCategories.map((category, index) => {
                             const categoryImage = products.find(p => p.category === category)?.image;
                             const count = products.filter(p => p.category === category).length;
+                            // Optimize image URL with WebP and compression
+                            const optimizedImage = categoryImage?.includes('unsplash')
+                                ? `${categoryImage}${categoryImage.includes('?') ? '&' : '?'}fm=webp&q=75`
+                                : categoryImage;
 
                             return (
-                                <FadeIn key={category} delay={index * 50}>
+                                <FadeIn key={category} delay={index * 30}>
                                     <div
                                         onClick={() => onCategorySelect(category)}
                                         className="group relative h-96 md:h-[500px] rounded-3xl overflow-hidden cursor-pointer shadow-soft hover:shadow-glow transition-all duration-300 border border-primary-100 hover:border-primary-400"
                                     >
                                         <img
-                                            src={categoryImage || FALLBACK_IMAGE}
+                                            src={optimizedImage || FALLBACK_IMAGE}
                                             alt={category}
-                                            loading="lazy"
+                                            loading={index < 3 ? "eager" : "lazy"}
                                             decoding="async"
                                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter brightness-90 group-hover:brightness-100"
                                             onError={handleImageError}
@@ -132,13 +142,13 @@ const Home: React.FC<HomeProps> = ({ products, onNavigate, onCategorySelect }) =
                         })}
 
                         {/* 6th Card: See All Categories */}
-                        <FadeIn delay={5 * 50}>
+                        <FadeIn delay={5 * 30}>
                             <div
                                 onClick={() => onNavigate('store')}
                                 className="group relative h-96 md:h-[500px] rounded-3xl overflow-hidden cursor-pointer shadow-soft hover:shadow-glow transition-all duration-300 border border-primary-100 hover:border-primary-400 bg-slate-900"
                             >
                                 <img
-                                    src="https://images.unsplash.com/photo-1513506003011-38f45e86c430?auto=format&fit=crop&w=800&q=80"
+                                    src="https://images.unsplash.com/photo-1513506003011-38f45e86c430?auto=format&fit=crop&w=800&q=75&fm=webp"
                                     alt="All Categories"
                                     loading="lazy"
                                     decoding="async"

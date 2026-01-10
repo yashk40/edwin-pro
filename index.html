@@ -66,6 +66,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://images.unsplash.com" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="preconnect" href="https://videos.pexels.com" />
     <!-- Preload Hero Image for faster LCP -->
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1556910103-1c02745a30bf?auto=format&fit=crop&w=1920&q=80" />
@@ -193,6 +194,10 @@
 </head>
   <body class="bg-primary-50 text-slate-800 dark:bg-slate-950 dark:text-primary-50 antialiased selection:bg-primary-200 selection:text-primary-900 subpixel-antialiased">
     <div id="root"></div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script type="module" src="/index.tsx"></script>
+    <script>
+  AOS.init();
+</script>
   </body>
 </html>

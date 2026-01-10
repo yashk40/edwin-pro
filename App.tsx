@@ -12,6 +12,7 @@ import { CONFIG } from './config';
 import { useSettings } from './contexts/SettingsContext';
 import { getProducts } from './utils/productManager';
 import { Product } from './data';
+import { useLenis } from './hooks/useLenis';
 
 // Lazy load heavy view components
 const Store = lazy(() => import('./components/Store'));
@@ -31,6 +32,9 @@ const App: React.FC = () => {
 
   // Products State
   const [products, setProducts] = useState<Product[]>([]);
+
+  // Initialize Lenis smooth scroll
+  useLenis();
 
   // Load products on mount
   useEffect(() => {

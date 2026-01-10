@@ -1,20 +1,17 @@
 
-import React, { memo, useRef, useState, useEffect } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { CONFIG } from '../config';
 import { ArrowRightIcon } from './Icons';
-import { gsap } from 'gsap';
-import { useGSAP } from '@gsap/react';
-import BlurText from './BlurText';
 
 const BannerSlider: React.FC = memo(() => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
 
-    // Background images for carousel
+    // Optimized background images with WebP format and compression
     const backgroundImages = [
-        'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1920&q=80', // Modern kitchen
-        'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1920&q=80', // Kitchen hardware
-        'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1920&q=80', // Kitchen details
+        'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1920&q=75&fm=webp',
+        'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1920&q=75&fm=webp',
+        'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1920&q=75&fm=webp',
     ];
     const slides = backgroundImages.length;
 
@@ -24,30 +21,10 @@ const BannerSlider: React.FC = memo(() => {
 
         const interval = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides);
-        }, 6000); // 6 seconds per slide
+        }, 6000);
 
         return () => clearInterval(interval);
     }, [isPaused, slides]);
-
-    useGSAP(() => {
-        // Text animations timeline - only on initial load
-        const tl = gsap.timeline({ delay: 0.5 });
-
-        tl.fromTo('.banner-badge',
-            { opacity: 0, y: -20 },
-            { opacity: 1, y: 0, duration: 1.5, ease: 'power2.out' }
-        )
-            .fromTo('.banner-subhead',
-                { opacity: 0, y: 20 },
-                { opacity: 1, y: 0, duration: 1.5, ease: 'power2.out' },
-                "-=1.0"
-            )
-            .fromTo('.banner-cta',
-                { opacity: 0, scale: 0.9, y: 20 },
-                { opacity: 1, scale: 1, y: 0, duration: 1.0, ease: 'power2.out' },
-                "-=1.2"
-            );
-    }, []); // Only run once on mount
 
     return (
         <div
@@ -66,6 +43,7 @@ const BannerSlider: React.FC = memo(() => {
                             backgroundImage: `url(${image})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
+                            willChange: currentSlide === index ? 'opacity' : 'auto',
                         }}
                     />
                 ))}
@@ -74,28 +52,34 @@ const BannerSlider: React.FC = memo(() => {
             {/* Dark Overlay for text contrast */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30 z-10"></div>
 
-            {/* Static Hero Content */}
+            {/* Static Hero Content - AOS animations */}
             <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-12 lg:px-20 max-w-7xl mx-auto z-20 pt-24">
                 <div className="max-w-3xl">
-                    <div className="opacity-0 banner-badge">
+                    <div data-aos="fade-down" data-aos-delay="300" data-aos-duration="800">
                         <span className="inline-block py-1 px-3 rounded-full bg-primary-500/20 border border-primary-500/50 text-primary-300 font-bold uppercase tracking-[0.2em] text-xs mb-6 backdrop-blur-sm">
                             Premium Kitchen Hardware
                         </span>
                     </div>
 
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight drop-shadow-lg">
-                        <BlurText
-                            text="Engineered for the Modern Kitchen."
-                            className="block"
-                            wordMode={true}
-                        />
+                    <h1
+                        className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight drop-shadow-lg"
+                        data-aos="fade-up"
+                        data-aos-delay="500"
+                        data-aos-duration="800"
+                    >
+                        Engineered for the Modern Kitchen.
                     </h1>
 
-                    <p className="text-lg md:text-xl text-slate-200 mb-10 max-w-2xl font-medium leading-relaxed drop-shadow-md opacity-0 banner-subhead">
+                    <p
+                        className="text-lg md:text-xl text-slate-200 mb-10 max-w-2xl font-medium leading-relaxed drop-shadow-md"
+                        data-aos="fade-up"
+                        data-aos-delay="700"
+                        data-aos-duration="800"
+                    >
                         Experience the smooth glide of EdwenPro Tandem Hardware. The preferred choice for modular kitchen manufacturers and architects.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4 opacity-0 banner-cta">
+                    <div data-aos="fade-up" data-aos-delay="900" data-aos-duration="800">
                         <a
                             href="#store"
                             className="inline-flex items-center justify-center gap-3 bg-primary-500 text-slate-900 px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-white transition-all transform hover:translate-x-1 shadow-lg shadow-primary-500/25"

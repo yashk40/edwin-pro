@@ -39,7 +39,7 @@ const Header: React.FC<HeaderProps> = React.memo(({ currentView, onNavigate, onO
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-40 bg-white/80 dark:bg-slate-900/90 backdrop-blur-md shadow-sm border-b border-slate-200 dark:border-slate-800 h-16 md:h-20 lg:h-24 transition-all duration-300">
+      <header className="fixed top-0 left-0 right-0 z-40 bg-white/80 dark:bg-slate-900/90  shadow-sm border-b border-slate-200 dark:border-slate-800 h-16 md:h-20 lg:h-24 transition-all duration-300">
         <div className="container mx-auto px-4 md:px-8 h-full">
           <div className="flex justify-between items-center h-full relative">
             {/* Logo */}
