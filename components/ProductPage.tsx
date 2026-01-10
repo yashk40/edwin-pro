@@ -7,6 +7,7 @@ import {
     VideoIcon, MonitorIcon, PenToolIcon, ImageIcon
 } from './Icons';
 import { Product } from '../data';
+import PricingTable from './PricingTable';
 
 interface ProductPageProps {
     product: Product;
@@ -86,7 +87,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                                 <img
                                     src={galleryImages[activeImageIndex]}
                                     alt={product.name}
-                                    className="w-full h-full object-cover animate-in fade-in duration-300"
+                                    className="w-full h-full object-contain animate-in fade-in duration-300"
                                 />
                             ) : (
                                 <div className="w-full h-full flex flex-col items-center justify-center animate-in fade-in zoom-in-95 duration-300">
@@ -149,20 +150,20 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                                 <div className="text-sm font-mono text-slate-400 mb-6 bg-slate-50 inline-block px-2 py-1 rounded">SKU: {product.sku}</div>
                             )}
 
-                            <div className="flex items-baseline gap-3 mb-8">
-                                <span className="text-5xl font-bold text-slate-900">₹{product.price.toLocaleString('en-IN')}</span>
-                                {product.originalPrice && (
-                                    <span className="text-xl text-slate-400 line-through decoration-2">₹{product.originalPrice.toLocaleString('en-IN')}</span>
-                                )}
-                            </div>
-
-                            {/* Stock Status */}
-                            <div className="flex items-center gap-3 mb-2 p-3 bg-slate-50 rounded-lg border border-slate-100 inline-flex">
-                                <div className={`w-3 h-3 rounded-full animate-pulse ${product.inStock ? 'bg-emerald-500' : 'bg-red-500'}`}></div>
-                                <span className={`font-bold text-sm ${product.inStock ? 'text-emerald-700' : 'text-red-600'}`}>
-                                    {product.inStock ? 'In Stock & Ready to Ship' : 'Currently Out of Stock'}
-                                </span>
-                            </div>
+                            {/* Price or Pricing Table */}
+                            {product.pricingTable && product.pricingTable.length > 0 ? (
+                                <div className="mb-8">
+                                    <h3 className="text-sm font-bold text-slate-600 uppercase tracking-wider mb-3">Pricing Details</h3>
+                                    <PricingTable pricingData={product.pricingTable} />
+                                </div>
+                            ) : (
+                                <div className="flex items-baseline gap-3 mb-8">
+                                    <span className="text-5xl font-bold text-slate-900">₹{product.price.toLocaleString('en-IN')}</span>
+                                    {product.originalPrice && (
+                                        <span className="text-xl text-slate-400 line-through decoration-2">₹{product.originalPrice.toLocaleString('en-IN')}</span>
+                                    )}
+                                </div>
+                            )}
                         </div>
 
                         {/* Tabs */}

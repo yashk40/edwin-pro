@@ -143,7 +143,7 @@ const Store: React.FC<StoreProps> = ({ products, onNavigate, onModalToggle, init
                 <div className="flex flex-col lg:flex-row gap-8 items-start">
 
                     {/* Desktop Sidebar */}
-                    <aside className="hidden lg:block w-72 shrink-0 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar">
+                    <aside className="hidden lg:block w-72 shrink-0 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sticky top-24">
                         <StoreFilters {...FiltersProps} />
                     </aside>
 
@@ -193,7 +193,7 @@ const Store: React.FC<StoreProps> = ({ products, onNavigate, onModalToggle, init
                             </div>
 
                             {/* Active Filters Display */}
-                            {(selectedCategories.length > 0 || selectedMaterials.length > 0 || selectedColors.length > 0 ) && (
+                            {(selectedCategories.length > 0 || selectedMaterials.length > 0 || selectedColors.length > 0) && (
                                 <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-100">
                                     {selectedCategories.map(cat => (
                                         <button key={cat} onClick={() => toggleCategory(cat)} className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-800 text-white rounded-full text-xs font-bold uppercase hover:bg-slate-700 transition-colors">

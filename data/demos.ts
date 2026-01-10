@@ -17,7 +17,7 @@ export const products: Product[] = [
       "Durable construction for long-term use",
       "Clean grey finish for a modern look"
     ],
-    sku: "EP-GRT-3D-SLIMBOX",
+    // sku: "EP-GRT-3D-SLIMBOX",
     specs: [
       { key: "Color", value: "Grey" },
       { key: "Available Heights", value: "84mm, 116mm, 164mm, 199mm" },
@@ -26,7 +26,31 @@ export const products: Product[] = [
     inStock: true,
     createdAt: "2024-01-01",
     material: "Steel",
-    color: "Grey"
+    color: "Grey",
+    pricingTable: [
+      { itemCode: "EP-51-SD-84*300", mrp: "2589/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-84*350", mrp: "2749/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-84*400", mrp: "2729/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-84*450", mrp: "2769/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-84*500", mrp: "2869/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-84*550", mrp: "3039/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-116*300", mrp: "2799/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-116*350", mrp: "3119/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-116*400", mrp: "2959/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-116*450", mrp: "2999/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-116*500", mrp: "3269/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-116*550", mrp: "3429/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-164*300", mrp: "3409/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-164*350", mrp: "3729/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-164*400", mrp: "3399/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-164*450", mrp: "3599/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-164*500", mrp: "3659/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-164*550", mrp: "3909/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-199*400", mrp: "3629/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-199*450", mrp: "3699/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-199*500", mrp: "4659/-", finish: "Grey" },
+      { itemCode: "EP-51-SD-199*550", mrp: "4299/-", finish: "Grey" }
+    ]
   },
 
   // --- SLIM DRAWER SYSTEM (NERO-TECH - BLACK) ---
@@ -45,7 +69,7 @@ export const products: Product[] = [
       "Optimized for space and accessibility",
       "Multiple size options for custom fit"
     ],
-    sku: "EP-NERO-SLIMDRAWER",
+    // sku: "EP-NERO-SLIMDRAWER",
     specs: [
       { key: "Color", value: "Black" },
       { key: "Available Heights", value: "84mm, 116mm, 164mm, 199mm" },
@@ -54,7 +78,21 @@ export const products: Product[] = [
     inStock: true,
     createdAt: "2024-01-01",
     material: "Steel",
-    color: "Black"
+    color: "Black",
+    pricingTable: [
+      { itemCode: "EP-51-BLK-84*450", mrp: "2449/-", finish: "Black" },
+      { itemCode: "EP-51-BLK-84*500", mrp: "2499/-", finish: "Black" },
+      { itemCode: "EP-51-BLK-84*550", mrp: "2699/-", finish: "Black" },
+      { itemCode: "EP-51-BLK-116*450", mrp: "2849/-", finish: "Black" },
+      { itemCode: "EP-51-BLK-116*500", mrp: "2899/-", finish: "Black" },
+      { itemCode: "EP-51-BLK-116*550", mrp: "3099/-", finish: "Black" },
+      { itemCode: "EP-51-BLK-164*450", mrp: "3199/-", finish: "Black" },
+      { itemCode: "EP-51-BLK-164*500", mrp: "3249/-", finish: "Black" },
+      { itemCode: "EP-51-BLK-164*550", mrp: "3449/-", finish: "Black" },
+      { itemCode: "EP-51-BLK-199*450", mrp: "3549/-", finish: "Black" },
+      { itemCode: "EP-51-BLK-199*500", mrp: "3649/-", finish: "Black" },
+      { itemCode: "EP-51-BLK-199*550", mrp: "3799/-", finish: "Black" }
+    ]
   },
 
   // --- PANTRY UNITS ---
@@ -62,7 +100,7 @@ export const products: Product[] = [
   // --- PANTRY UNITS ---
   {
     id: 301,
-    name: "Berlin Series",
+    name: "Pantry: Berlin Series",
     category: "Pantry Units",
     series: "Berlin Series",
     price: 0.00,
@@ -85,11 +123,15 @@ export const products: Product[] = [
     inStock: true,
     createdAt: "2024-01-01",
     material: "Glass/Steel",
-    color: "Glass"
+    color: "Glass",
+    pricingTable: [
+      { itemCode: "EP-BER-PU-450MM", mrp: "34699/-", finish: "390x500x1860" },
+      { itemCode: "EP-BER-PU-600MM", mrp: "38099/-", finish: "564x500x1860" }
+    ]
   },
   {
     id: 302,
-    name: "Tokyo Series",
+    name: "Pantry: Tokyo Series",
     category: "Pantry Units",
     series: "Tokyo Series",
     price: 0.00,
@@ -112,16 +154,20 @@ export const products: Product[] = [
     inStock: true,
     createdAt: "2024-01-01",
     material: "Steel",
-    color: "Grey"
+    color: "Grey",
+    pricingTable: [
+      { itemCode: "EP-TOK-PL-450MM", mrp: "35599/-", finish: "390x500x1860" },
+      { itemCode: "EP-TOK-PU-600MM", mrp: "39899/-", finish: "564x500x1860" }
+    ]
   },
   {
     id: 303,
-    name: "Tok Rev. Series",
+    name: "Pantry: Tokyo Reversible Series",
     category: "Pantry Units",
-    series: "Tok Rev.",
+    series: "Tokyo Reversible Series",
     price: 0.00,
     image: "/TOKYO SERIES REVERSABLE PANTRY UNIT 2.jpg",
-    description: "Reversible pantry unit from Tok Rev. Series. Features 5 layers for versatile storage solutions. Durable construction available in two width options.",
+    description: "Reversible pantry unit from Tokyo Reversible Series. Features 5 layers for versatile storage solutions. Durable construction available in two width options.",
     sku: "EP-PU-TOKREV-GREY",
     specs: [
       { key: "Color", value: "Grey" },
@@ -139,11 +185,15 @@ export const products: Product[] = [
     inStock: true,
     createdAt: "2024-01-01",
     material: "Steel",
-    color: "Grey"
+    color: "Grey",
+    pricingTable: [
+      { itemCode: "EP-TOK-TPU-450MM", mrp: "32199/-", finish: "382x500x182" },
+      { itemCode: "EP-TOK-RPU-600MM", mrp: "34699/-", finish: "532x500x182" }
+    ]
   },
   {
     id: 304,
-    name: "Rio Series",
+    name: "Pantry: Rio Series",
     category: "Pantry Units",
     series: "Rio Series",
     price: 0.00,
@@ -193,11 +243,14 @@ export const products: Product[] = [
     inStock: true,
     createdAt: "2024-01-01",
     material: "Glass/Steel",
-    color: "Glass"
+    color: "Glass",
+    pricingTable: [
+      { itemCode: "EP-BER-CB-900MM", mrp: "27499/-", finish: "608x455x584" }
+    ]
   },
   {
     id: 402,
-    name: "Tokyo Series",
+    name: "Corner: Tokyo Series",
     category: "Corner Units",
     series: "Tokyo Series",
     price: 27199,
@@ -216,11 +269,14 @@ export const products: Product[] = [
     inStock: true,
     createdAt: "2024-01-01",
     material: "Steel",
-    color: "Grey"
+    color: "Grey",
+    pricingTable: [
+      { itemCode: "EP-TOK-CB-900MM", mrp: "27199/-", finish: "608x455x584" }
+    ]
   },
   {
     id: 403,
-    name: "Rio Series - Grey",
+    name: "Corner: Rio Series - Grey",
     category: "Corner Units",
     series: "Rio Series",
     price: 18129,
@@ -243,7 +299,7 @@ export const products: Product[] = [
   },
   {
     id: 404,
-    name: "Rio Series - Black",
+    name: "Corner: Rio Series - Black",
     category: "Corner Units",
     series: "Rio Series",
     price: 0.00,
@@ -368,7 +424,7 @@ export const products: Product[] = [
   // --- ORGANIZERS ---
   {
     id: 601,
-    name: "Berlin Series",
+    name: "Berlin Series Drawer Organizer",
     category: "Drawer Organizers",
     series: "Berlin Series",
     price: 0.00,
@@ -384,11 +440,15 @@ export const products: Product[] = [
     inStock: true,
     createdAt: "2024-01-01",
     material: "Glass",
-    color: "Glass"
+    color: "Glass",
+    pricingTable: [
+      { itemCode: "EP-BER-DO-600MM", mrp: "9999/-", finish: "564x466x169" },
+      { itemCode: "EP-BER-DO-900MM", mrp: "11889/-", finish: "864x466x169" }
+    ]
   },
   {
     id: 602,
-    name: "Tokyo Series",
+    name: "Tokyo Series Drawer Organizer",
     category: "Drawer Organizers",
     series: "Tokyo Series",
     price: 0.00,
@@ -404,7 +464,11 @@ export const products: Product[] = [
     inStock: true,
     createdAt: "2024-01-01",
     material: "Steel",
-    color: "Grey"
+    color: "Grey",
+    pricingTable: [
+      { itemCode: "EP-TOK-DO-600MM", mrp: "10699/-", finish: "564x466x131" },
+      { itemCode: "EP-TOK-DO-900MM", mrp: "11899/-", finish: "864x466x131" }
+    ]
   },
 
   // --- DRAWER SLIDES (Updated with sizes) ---
@@ -431,7 +495,18 @@ export const products: Product[] = [
     inStock: true,
     createdAt: "2024-01-01",
     material: "Steel",
-    color: "Zinc"
+    color: "Zinc",
+    pricingTable: [
+      { itemCode: "EP-DS-GP-200MM", mrp: "289/-", finish: "200mm" },
+      { itemCode: "EP-DS-GP-250MM", mrp: "289/-", finish: "250mm" },
+      { itemCode: "EP-DS-GP-300MM", mrp: "349/-", finish: "300mm" },
+      { itemCode: "EP-DS-GP-350MM", mrp: "409/-", finish: "350mm" },
+      { itemCode: "EP-DS-GP-400MM", mrp: "469/-", finish: "400mm" },
+      { itemCode: "EP-DS-GP-450MM", mrp: "519/-", finish: "450mm" },
+      { itemCode: "EP-DS-GP-500MM", mrp: "579/-", finish: "500mm" },
+      { itemCode: "EP-DS-GP-550MM", mrp: "639/-", finish: "550mm" },
+      { itemCode: "EP-DS-GP-600MM", mrp: "699/-", finish: "600mm" }
+    ]
   },
   {
     id: 702,
@@ -454,7 +529,17 @@ export const products: Product[] = [
     inStock: true,
     createdAt: "2024-01-01",
     material: "Steel",
-    color: "Zinc"
+    color: "Zinc",
+    // pricingTable: [
+    //   { itemCode: "EP-DS-SP-250MM", mrp: "239/-", finish: "250mm" },
+    //   { itemCode: "EP-DS-SP-300MM", mrp: "289/-", finish: "300mm" },
+    //   { itemCode: "EP-DS-SP-350MM", mrp: "339/-", finish: "350mm" },
+    //   { itemCode: "EP-DS-SP-400MM", mrp: "389/-", finish: "400mm" },
+    //   { itemCode: "EP-DS-SP-450MM", mrp: "429/-", finish: "450mm" },
+    //   { itemCode: "EP-DS-SP-500MM", mrp: "479/-", finish: "500mm" },
+    //   { itemCode: "EP-DS-SP-550MM", mrp: "529/-", finish: "550mm" },
+    //   { itemCode: "EP-DS-SP-600MM", mrp: "579/-", finish: "600mm" }
+    // ]
   },
   {
     id: 703,
@@ -464,7 +549,7 @@ export const products: Product[] = [
     price: 0.00,
     image: "https://via.placeholder.com/150",
     description: "Soft Closing drawer slides, available in various lengths.",
-    sku: "EP-DS-SC-ZNC",
+
     specs: [
       { key: "Color", value: "Zinc" },
       { key: "Available Sizes", value: "300MM, 350MM, 400MM, 450MM, 500MM, 550MM, 600MM" }

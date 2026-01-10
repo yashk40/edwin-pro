@@ -24,6 +24,7 @@ export interface Product {
   videoUrl?: string;
   material?: string;
   color?: string;
+  pricingTable?: { itemCode: string; mrp: string; finish: string }[];
 }
 
 export interface Project {
