@@ -3,6 +3,7 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import { WhatsAppIcon } from './components/Icons';
 import BottomNav from './components/BottomNav';
 import Home from './components/Home';
 import LoadingScreen from './components/LoadingScreen';
@@ -185,7 +186,7 @@ const App: React.FC = () => {
         className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-30 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transform hover:scale-110 transition-all duration-300"
         aria-label="Contact us on WhatsApp"
       >
-        <MessageCircleIcon className="w-6 h-6" />
+        <WhatsAppIcon className="w-8 h-8" />
       </a>
     </div>
   );

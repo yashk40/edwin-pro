@@ -8,7 +8,7 @@ export const products: Product[] = [
     category: "Slim Tandom System",
     series: "Grigio Tech",
     price: 0.00,
-    image: "https://via.placeholder.com/150",
+    image: "",
     description: "The Edwenpro Slim Tandem System – 3D Slim Box is engineered for modern modular kitchens that demand precision, durability, and smooth performance. Designed with a sleek slim profile, this drawer system maximizes internal storage space while maintaining a refined, contemporary appearance.\n\nBuilt for strength and stability, the system ensures smooth and silent drawer movement, making everyday kitchen usage effortless. Its versatile size options make it suitable for a wide range of kitchen drawers, from compact storage to larger utility units.",
     keyFeatures: [
       "Slim, space-efficient design",
@@ -36,7 +36,7 @@ export const products: Product[] = [
     category: "Slim Drawer System",
     series: "Nero-Tech",
     price: 0.00,
-    image: "https://via.placeholder.com/150",
+    image: "/BERLIN SERIES 3 SIDE GLASS DRAWER.jpg",
     description: "The Edwenpro Slim Drawer System Black Series, Nero-Tech, is designed for modern kitchen aesthetics and superior functionality. Featuring a sleek black finish, this drawer system offers a sophisticated look while providing optimal storage and smooth operation.\n\nEngineered for durability, it ensures quiet and stable movement, enhancing the daily kitchen experience. With various height and length options, it adapts to diverse cabinet configurations, offering versatile storage solutions.",
     keyFeatures: [
       "Sleek black finish for modern kitchens",
@@ -62,24 +62,25 @@ export const products: Product[] = [
   // --- PANTRY UNITS ---
   {
     id: 301,
-    name: "Berlin Series - 450mm",
+    name: "Berlin Series",
     category: "Pantry Units",
     series: "Berlin Series",
-    price: 34699,
-    image: "https://via.placeholder.com/150",
-    description: "Pantry unit from Berlin Series, 450mm width, 6 layers.",
-    sku: "EP-PU-BER-450G",
+    price: 0.00,
+    image: "/BERLIN SERIES PANTRY UNIT.jpg",
+    description: "Premium pantry unit from Berlin Series with elegant glass finish. Features 6 layers for ample storage capacity. Available in multiple widths to fit various kitchen configurations.",
+    sku: "EP-PU-BER-GLASS",
     specs: [
       { key: "Color", value: "Glass" },
       { key: "Height", value: "1860mm" },
-      { key: "Width", value: "450mm" },
+      { key: "Available Widths", value: "450mm, 600mm" },
       { key: "Depth", value: "500mm" },
       { key: "Layers", value: "6" }
     ],
     keyFeatures: [
       "Glass finish",
       "6 layers for ample storage",
-      "Durable and modern design"
+      "Durable and modern design",
+      "Multiple width options"
     ],
     inStock: true,
     createdAt: "2024-01-01",
@@ -88,50 +89,52 @@ export const products: Product[] = [
   },
   {
     id: 302,
-    name: "Berlin Series - 600mm",
-    category: "Pantry Units",
-    series: "Berlin Series",
-    price: 38099,
-    image: "https://via.placeholder.com/150",
-    description: "Pantry unit from Berlin Series, 600mm width, 6 layers.",
-    sku: "EP-PU-BER-600G",
-    specs: [
-      { key: "Color", value: "Glass" },
-      { key: "Height", value: "1860mm" },
-      { key: "Width", value: "600mm" },
-      { key: "Depth", value: "500mm" },
-      { key: "Layers", value: "6" }
-    ],
-    keyFeatures: [
-      "Glass finish",
-      "6 layers for ample storage",
-      "Durable and modern design"
-    ],
-    inStock: true,
-    createdAt: "2024-01-01",
-    material: "Glass/Steel",
-    color: "Glass"
-  },
-  {
-    id: 303,
-    name: "Tokyo Series - 450mm",
+    name: "Tokyo Series",
     category: "Pantry Units",
     series: "Tokyo Series",
-    price: 35599,
-    image: "https://via.placeholder.com/150",
-    description: "Pantry unit from Tokyo Series, 450mm width, 6 layers.",
-    sku: "EP-PU-TOK-450G",
+    price: 0.00,
+    image: "/TOKYO SERIES REVERSABLE PANTRY UNIT.jpg",
+    description: "Robust pantry unit from Tokyo Series with premium grey finish. Features 6 layers for extensive storage. Available in multiple widths for flexible kitchen design.",
+    sku: "EP-PU-TOK-GREY",
     specs: [
       { key: "Color", value: "Grey" },
       { key: "Height", value: "1860mm" },
-      { key: "Width", value: "450mm" },
+      { key: "Available Widths", value: "450mm, 600mm" },
       { key: "Depth", value: "500mm" },
       { key: "Layers", value: "6" }
     ],
     keyFeatures: [
       "Grey finish",
       "6 layers for ample storage",
-      "Robust and functional design"
+      "Robust and functional design",
+      "Multiple width options"
+    ],
+    inStock: true,
+    createdAt: "2024-01-01",
+    material: "Steel",
+    color: "Grey"
+  },
+  {
+    id: 303,
+    name: "Tok Rev. Series",
+    category: "Pantry Units",
+    series: "Tok Rev.",
+    price: 0.00,
+    image: "/TOKYO SERIES REVERSABLE PANTRY UNIT 2.jpg",
+    description: "Reversible pantry unit from Tok Rev. Series. Features 5 layers for versatile storage solutions. Durable construction available in two width options.",
+    sku: "EP-PU-TOKREV-GREY",
+    specs: [
+      { key: "Color", value: "Grey" },
+      { key: "Height", value: "1828mm" },
+      { key: "Available Widths", value: "450mm, 600mm" },
+      { key: "Depth", value: "500mm" },
+      { key: "Layers", value: "5" }
+    ],
+    keyFeatures: [
+      "Reversible design",
+      "5 layers for versatile storage",
+      "Durable construction",
+      "Multiple width options"
     ],
     inStock: true,
     createdAt: "2024-01-01",
@@ -140,128 +143,25 @@ export const products: Product[] = [
   },
   {
     id: 304,
-    name: "Tokyo Series - 600mm",
-    category: "Pantry Units",
-    series: "Tokyo Series",
-    price: 39399,
-    image: "https://via.placeholder.com/150",
-    description: "Pantry unit from Tokyo Series, 600mm width, 6 layers.",
-    sku: "EP-PU-TOK-600G",
-    specs: [
-      { key: "Color", value: "Grey" },
-      { key: "Height", value: "1860mm" },
-      { key: "Width", value: "600mm" },
-      { key: "Depth", value: "500mm" },
-      { key: "Layers", value: "6" }
-    ],
-    keyFeatures: [
-      "Grey finish",
-      "6 layers for ample storage",
-      "Robust and functional design"
-    ],
-    inStock: true,
-    createdAt: "2024-01-01",
-    material: "Steel",
-    color: "Grey"
-  },
-  {
-    id: 305,
-    name: "Tok Rev. - 450mm",
-    category: "Pantry Units",
-    series: "Tok Rev.",
-    price: 32199,
-    image: "https://via.placeholder.com/150",
-    description: "Reversible pantry unit from Tok Rev. Series, 450mm width, 5 layers.",
-    sku: "EP-PU-TOKREV-450G",
-    specs: [
-      { key: "Color", value: "Grey" },
-      { key: "Height", value: "1828mm" },
-      { key: "Width", value: "450mm" },
-      { key: "Depth", value: "500mm" },
-      { key: "Layers", value: "5" }
-    ],
-    keyFeatures: [
-      "Reversible design",
-      "5 layers for versatile storage",
-      "Durable construction"
-    ],
-    inStock: true,
-    createdAt: "2024-01-01",
-    material: "Steel",
-    color: "Grey"
-  },
-  {
-    id: 306,
-    name: "Tok Rev. - 600mm",
-    category: "Pantry Units",
-    series: "Tok Rev.",
-    price: 34699,
-    image: "https://via.placeholder.com/150",
-    description: "Reversible pantry unit from Tok Rev. Series, 600mm width, 5 layers.",
-    sku: "EP-PU-TOKREV-600G",
-    specs: [
-      { key: "Color", value: "Grey" },
-      { key: "Height", value: "1828mm" },
-      { key: "Width", value: "600mm" },
-      { key: "Depth", value: "500mm" },
-      { key: "Layers", value: "5" }
-    ],
-    keyFeatures: [
-      "Reversible design",
-      "5 layers for versatile storage",
-      "Durable construction"
-    ],
-    inStock: true,
-    createdAt: "2024-01-01",
-    material: "Steel",
-    color: "Grey"
-  },
-  {
-    id: 307,
-    name: "Rio Series - 450mm",
+    name: "Rio Series",
     category: "Pantry Units",
     series: "Rio Series",
     price: 0.00,
-    image: "https://via.placeholder.com/150",
-    description: "Pantry unit from Rio Series, 450mm width, 6 layers.",
-    sku: "EP-PU-RIO-450GB",
+    image: "",
+    description: "Stylish pantry unit from Rio Series with modern Grey/Black finish. Features 6 layers for extensive storage capacity. Available in two width configurations.",
+    sku: "EP-PU-RIO-GREYBLACK",
     specs: [
       { key: "Color", value: "Grey/Black" },
       { key: "Height", value: "1828mm" },
-      { key: "Width", value: "450mm" },
+      { key: "Available Widths", value: "450mm, 600mm" },
       { key: "Depth", value: "500mm" },
       { key: "Layers", value: "6" }
     ],
     keyFeatures: [
       "Stylish Grey/Black finish",
       "6 layers for extensive storage",
-      "Robust and modern design"
-    ],
-    inStock: true,
-    createdAt: "2024-01-01",
-    material: "Steel",
-    color: "Grey/Black"
-  },
-  {
-    id: 308,
-    name: "Rio Series - 600mm",
-    category: "Pantry Units",
-    series: "Rio Series",
-    price: 0.00,
-    image: "https://via.placeholder.com/150",
-    description: "Pantry unit from Rio Series, 600mm width, 6 layers.",
-    sku: "EP-PU-RIO-600GB",
-    specs: [
-      { key: "Color", value: "Grey/Black" },
-      { key: "Height", value: "1828mm" },
-      { key: "Width", value: "600mm" },
-      { key: "Depth", value: "500mm" },
-      { key: "Layers", value: "6" }
-    ],
-    keyFeatures: [
-      "Stylish Grey/Black finish",
-      "6 layers for extensive storage",
-      "Robust and modern design"
+      "Robust and modern design",
+      "Multiple width options"
     ],
     inStock: true,
     createdAt: "2024-01-01",
@@ -278,7 +178,7 @@ export const products: Product[] = [
     category: "Corner Units",
     series: "Berlin Series",
     price: 27499,
-    image: "https://via.placeholder.com/150",
+    image: "/BERLIN SERIES CORNER BASKET.jpg",
     description: "Corner unit from Berlin Series, 900mm, glass finish.",
     sku: "EP-CU-BER-900G",
     specs: [
@@ -301,7 +201,7 @@ export const products: Product[] = [
     category: "Corner Units",
     series: "Tokyo Series",
     price: 27199,
-    image: "https://via.placeholder.com/150",
+    image: "/TOKYO SERIES CORNER BASKET.jpg",
     description: "Corner unit from Tokyo Series, 900mm, grey finish.",
     sku: "EP-CU-TOK-900G",
     specs: [
@@ -324,7 +224,7 @@ export const products: Product[] = [
     category: "Corner Units",
     series: "Rio Series",
     price: 18129,
-    image: "https://via.placeholder.com/150",
+    image: "",
     description: "Corner unit from Rio Series, 900mm, grey/black finish.",
     sku: "EP-CU-RIO-900GB-GREY",
     specs: [
@@ -347,7 +247,7 @@ export const products: Product[] = [
     category: "Corner Units",
     series: "Rio Series",
     price: 0.00,
-    image: "https://via.placeholder.com/150",
+    image: "",
     description: "Corner unit from Rio Series, 900mm, black finish.",
     sku: "EP-CU-RIO-900GB-BLACK",
     specs: [
@@ -368,21 +268,22 @@ export const products: Product[] = [
   // --- PULLOUTS ---
   {
     id: 501,
-    name: "Berlin Series - Glass (200mm)",
+    name: "Berlin Series - Glass",
     category: "Pullouts",
     series: "Berlin Series",
-    price: 9099,
-    image: "https://via.placeholder.com/150",
-    description: "Glass pullout from Berlin Series, 200mm width.",
-    sku: "EP-PUL-BER-200G",
+    price: 0.00,
+    image: "/BERLIN SERIES BOTTLE PULLOUT.jpg",
+    description: "Glass pullout from Berlin Series. Premium quality pullout storage solution with smooth operation mechanism. Available in multiple widths to suit various cabinet configurations.",
+    sku: "EP-PUL-BER-GLASS",
     specs: [
       { key: "Color", value: "Glass" },
-      { key: "Size", value: "200mm" }
+      { key: "Available Sizes", value: "200mm, 250mm, 300mm" }
     ],
     keyFeatures: [
       "Glass finish",
       "Smooth pull-out mechanism",
-      "Durable design"
+      "Durable design",
+      "Multiple size options"
     ],
     inStock: true,
     createdAt: "2024-01-01",
@@ -391,256 +292,75 @@ export const products: Product[] = [
   },
   {
     id: 502,
-    name: "Berlin Series - Glass (250mm)",
+    name: "Tokyo Series - Grey",
     category: "Pullouts",
-    series: "Berlin Series",
-    price: 9399,
-    image: "https://via.placeholder.com/150",
-    description: "Glass pullout from Berlin Series, 250mm width.",
-    sku: "EP-PUL-BER-250G",
+    series: "Tokyo Series",
+    price: 0.00,
+    image: "/TOKYO SERIES BOTTLE PULLOUT.jpg",
+    description: "Grey pullout from Tokyo Series. Robust steel construction with premium grey finish. Engineered for smooth operation and long-lasting durability. Available in multiple widths.",
+    sku: "EP-PUL-TOK-GREY",
     specs: [
-      { key: "Color", value: "Glass" },
-      { key: "Size", value: "250mm" }
+      { key: "Color", value: "Grey" },
+      { key: "Available Sizes", value: "200mm, 250mm, 300mm" }
     ],
     keyFeatures: [
-      "Glass finish",
+      "Grey finish",
       "Smooth pull-out mechanism",
-      "Durable design"
+      "Robust design",
+      "Multiple size options"
     ],
     inStock: true,
     createdAt: "2024-01-01",
-    material: "Glass/Steel",
-    color: "Glass"
+    material: "Steel",
+    color: "Grey"
   },
   {
     id: 503,
-    name: "Berlin Series - Glass (300mm)",
+    name: "Rio Series - Grey/Black",
     category: "Pullouts",
-    series: "Berlin Series",
-    price: 9699,
-    image: "https://via.placeholder.com/150",
-    description: "Glass pullout from Berlin Series, 300mm width.",
-    sku: "EP-PUL-BER-300G",
+    series: "Rio Series",
+    price: 0.00,
+    image: "",
+    description: "Grey/Black pullout from Rio Series. Modern dual-tone design combining functionality with aesthetic appeal. Ideal for contemporary kitchen configurations. Available in multiple sizes.",
+    sku: "EP-PUL-RIO-GREY",
     specs: [
-      { key: "Color", value: "Glass" },
-      { key: "Size", value: "300mm" }
+      { key: "Color", value: "Grey/Black" },
+      { key: "Available Sizes", value: "200mm, 250mm, 300mm" }
     ],
     keyFeatures: [
-      "Glass finish",
-      "Smooth pull-out mechanism",
-      "Durable design"
+      "Grey/Black finish",
+      "Modern design",
+      "Efficient storage solution",
+      "Multiple size options"
     ],
     inStock: true,
     createdAt: "2024-01-01",
-    material: "Glass/Steel",
-    color: "Glass"
+    material: "Steel",
+    color: "Grey/Black"
   },
   {
     id: 504,
-    name: "Tokyo Series - Grey (200mm)",
-    category: "Pullouts",
-    series: "Tokyo Series",
-    price: 9699,
-    image: "https://via.placeholder.com/150",
-    description: "Grey pullout from Tokyo Series, 200mm width.",
-    sku: "EP-PUL-TOK-200G",
-    specs: [
-      { key: "Color", value: "Grey" },
-      { key: "Size", value: "200mm" }
-    ],
-    keyFeatures: [
-      "Grey finish",
-      "Smooth pull-out mechanism",
-      "Robust design"
-    ],
-    inStock: true,
-    createdAt: "2024-01-01",
-    material: "Steel",
-    color: "Grey"
-  },
-  {
-    id: 505,
-    name: "Tokyo Series - Grey (250mm)",
-    category: "Pullouts",
-    series: "Tokyo Series",
-    price: 9999,
-    image: "https://via.placeholder.com/150",
-    description: "Grey pullout from Tokyo Series, 250mm width.",
-    sku: "EP-PUL-TOK-250G",
-    specs: [
-      { key: "Color", value: "Grey" },
-      { key: "Size", value: "250mm" }
-    ],
-    keyFeatures: [
-      "Grey finish",
-      "Smooth pull-out mechanism",
-      "Robust design"
-    ],
-    inStock: true,
-    createdAt: "2024-01-01",
-    material: "Steel",
-    color: "Grey"
-  },
-  {
-    id: 506,
-    name: "Tokyo Series - Grey (300mm)",
-    category: "Pullouts",
-    series: "Tokyo Series",
-    price: 10299,
-    image: "https://via.placeholder.com/150",
-    description: "Grey pullout from Tokyo Series, 300mm width.",
-    sku: "EP-PUL-TOK-300G",
-    specs: [
-      { key: "Color", value: "Grey" },
-      { key: "Size", value: "300mm" }
-    ],
-    keyFeatures: [
-      "Grey finish",
-      "Smooth pull-out mechanism",
-      "Robust design"
-    ],
-    inStock: true,
-    createdAt: "2024-01-01",
-    material: "Steel",
-    color: "Grey"
-  },
-  {
-    id: 507,
-    name: "Rio Series - Grey (200mm)",
+    name: "Rio Series - Black",
     category: "Pullouts",
     series: "Rio Series",
     price: 0.00,
     image: "https://via.placeholder.com/150",
-    description: "Grey/Black pullout from Rio Series, 200mm width.",
-    sku: "EP-PUL-RIO-200GB-GREY",
+    description: "Black pullout from Rio Series. Sleek black finish for modern kitchen aesthetics. Combines style with practical storage functionality. Available in multiple width options.",
+    sku: "EP-PUL-RIO-BLACK",
     specs: [
-      { key: "Color", value: "Grey/Black" },
-      { key: "Size", value: "200mm" }
-    ],
-    keyFeatures: [
-      "Grey/Black finish",
-      "Modern design",
-      "Efficient storage solution"
-    ],
-    inStock: true,
-    createdAt: "2024-01-01",
-    material: "Steel",
-    color: "Grey/Black"
-  },
-  {
-    id: 508,
-    name: "Rio Series - Grey (250mm)",
-    category: "Pullouts",
-    series: "Rio Series",
-    price: 0.00,
-    image: "https://via.placeholder.com/150",
-    description: "Grey/Black pullout from Rio Series, 250mm width.",
-    sku: "EP-PUL-RIO-250GB-GREY",
-    specs: [
-      { key: "Color", value: "Grey/Black" },
-      { key: "Size", value: "250mm" }
-    ],
-    keyFeatures: [
-      "Grey/Black finish",
-      "Modern design",
-      "Efficient storage solution"
-    ],
-    inStock: true,
-    createdAt: "2024-01-01",
-    material: "Steel",
-    color: "Grey/Black"
-  },
-  {
-    id: 509,
-    name: "Rio Series - Grey (300mm)",
-    category: "Pullouts",
-    series: "Rio Series",
-    price: 0.00,
-    image: "https://via.placeholder.com/150",
-    description: "Grey/Black pullout from Rio Series, 300mm width.",
-    sku: "EP-PUL-RIO-300GB-GREY",
-    specs: [
-      { key: "Color", value: "Grey/Black" },
-      { key: "Size", value: "300mm" }
-    ],
-    keyFeatures: [
-      "Grey/Black finish",
-      "Modern design",
-      "Efficient storage solution"
-    ],
-    inStock: true,
-    createdAt: "2024-01-01",
-    material: "Steel",
-    color: "Grey/Black"
-  },
-  {
-    id: 510,
-    name: "Rio Series - Black (200mm)",
-    category: "Pullouts",
-    series: "Rio Series",
-    price: 0.00,
-    image: "https://via.placeholder.com/150",
-    description: "Black pullout from Rio Series, 200mm width.",
-    sku: "EP-PUL-RIO-200GB-BLACK",
-    specs: [
-      { key: "Color", value: "Grey/Black" },
-      { key: "Size", value: "200mm" }
+      { key: "Color", value: "Black" },
+      { key: "Available Sizes", value: "200mm, 250mm, 300mm" }
     ],
     keyFeatures: [
       "Black finish",
       "Modern design",
-      "Efficient storage solution"
+      "Efficient storage solution",
+      "Multiple size options"
     ],
     inStock: true,
     createdAt: "2024-01-01",
     material: "Steel",
-    color: "Grey/Black"
-  },
-  {
-    id: 511,
-    name: "Rio Series - Black (250mm)",
-    category: "Pullouts",
-    series: "Rio Series",
-    price: 0.00,
-    image: "https://via.placeholder.com/150",
-    description: "Black pullout from Rio Series, 250mm width.",
-    sku: "EP-PUL-RIO-250GB-BLACK",
-    specs: [
-      { key: "Color", value: "Grey/Black" },
-      { key: "Size", value: "250mm" }
-    ],
-    keyFeatures: [
-      "Black finish",
-      "Modern design",
-      "Efficient storage solution"
-    ],
-    inStock: true,
-    createdAt: "2024-01-01",
-    material: "Steel",
-    color: "Grey/Black"
-  },
-  {
-    id: 512,
-    name: "Rio Series - Black (300mm)",
-    category: "Pullouts",
-    series: "Rio Series",
-    price: 0.00,
-    image: "https://via.placeholder.com/150",
-    description: "Black pullout from Rio Series, 300mm width.",
-    sku: "EP-PUL-RIO-300GB-BLACK",
-    specs: [
-      { key: "Color", value: "Grey/Black" },
-      { key: "Size", value: "300mm" }
-    ],
-    keyFeatures: [
-      "Black finish",
-      "Modern design",
-      "Efficient storage solution"
-    ],
-    inStock: true,
-    createdAt: "2024-01-01",
-    material: "Steel",
-    color: "Grey/Black"
+    color: "Black"
   },
 
   // --- ORGANIZERS ---
@@ -648,17 +368,17 @@ export const products: Product[] = [
   // --- ORGANIZERS ---
   {
     id: 601,
-    name: "Berlin Series - 600mm",
+    name: "Berlin Series",
     category: "Drawer Organizers",
     series: "Berlin Series",
-    price: 9999,
-    image: "https://via.placeholder.com/150",
-    description: "Drawer organizer from Berlin Series, 600mm width.",
-    sku: "EP-DO-BER-600G",
+    price: 0.00,
+    image: "/BERLIN SERIES 3 SIDE GLASS BOX.jpg",
+    description: "Premium drawer organizer from Berlin Series with elegant glass finish. Optimized for efficient drawer organization with multiple width options.",
+    sku: "EP-DO-BER-GLASS",
     specs: [
       { key: "Color", value: "Glass" },
       { key: "Height", value: "169mm" },
-      { key: "Width", value: "600mm" },
+      { key: "Available Widths", value: "600mm, 900mm" },
       { key: "Depth", value: "500mm" }
     ],
     inStock: true,
@@ -668,57 +388,17 @@ export const products: Product[] = [
   },
   {
     id: 602,
-    name: "Berlin Series - 900mm",
-    category: "Drawer Organizers",
-    series: "Berlin Series",
-    price: 11889,
-    image: "https://via.placeholder.com/150",
-    description: "Drawer organizer from Berlin Series, 900mm width.",
-    sku: "EP-DO-BER-900G",
-    specs: [
-      { key: "Color", value: "Glass" },
-      { key: "Height", value: "169mm" },
-      { key: "Width", value: "900mm" },
-      { key: "Depth", value: "500mm" }
-    ],
-    inStock: true,
-    createdAt: "2024-01-01",
-    material: "Glass",
-    color: "Glass"
-  },
-  {
-    id: 603,
-    name: "Tokyo Series - 600mm",
+    name: "Tokyo Series",
     category: "Drawer Organizers",
     series: "Tokyo Series",
-    price: 10699,
-    image: "https://via.placeholder.com/150",
-    description: "Drawer organizer from Tokyo Series, 600mm width.",
-    sku: "EP-DO-TOK-600G",
+    price: 0.00,
+    image: "/TOKYO SERIES 3 SIDE DRAWER.jpg",
+    description: "Robust drawer organizer from Tokyo Series with grey finish. Designed for optimal drawer organization with multiple width configurations.",
+    sku: "EP-DO-TOK-GREY",
     specs: [
       { key: "Color", value: "Grey" },
       { key: "Height", value: "131mm" },
-      { key: "Width", value: "600mm" },
-      { key: "Depth", value: "500mm" }
-    ],
-    inStock: true,
-    createdAt: "2024-01-01",
-    material: "Steel",
-    color: "Grey"
-  },
-  {
-    id: 604,
-    name: "Tokyo Series - 900mm",
-    category: "Drawer Organizers",
-    series: "Tokyo Series",
-    price: 11899,
-    image: "https://via.placeholder.com/150",
-    description: "Drawer organizer from Tokyo Series, 900mm width.",
-    sku: "EP-DO-TOK-900G",
-    specs: [
-      { key: "Color", value: "Grey" },
-      { key: "Height", value: "131mm" },
-      { key: "Width", value: "900mm" },
+      { key: "Available Widths", value: "600mm, 900mm" },
       { key: "Depth", value: "500mm" }
     ],
     inStock: true,
@@ -803,25 +483,17 @@ export const products: Product[] = [
   // --- SCREWS (Variations) ---
   {
     id: 801,
-    name: "Chipboard Screws (Zinc) - 4x16",
+    name: "Chipboard Screws (Zinc)",
     category: "Screws & Fasteners",
-    price: 310,
-    image: "https://www.scrooz.com.au/assets/full/CHP08032ZT.jpg?20240815160222",
-    description: "Phillips bugle head chipboard screws. Box of 1000.",
-    sku: "EP-CBS-16*4",
-    inStock: true,
-    createdAt: "2024-01-01",
-    material: "Steel",
-    color: "Zinc"
-  },
-  {
-    id: 802,
-    name: "Chipboard Screws (Zinc) - 4x25",
-    category: "Screws & Fasteners",
-    price: 240,
-    image: "https://www.scrooz.com.au/assets/full/CHP08032ZT.jpg?20240815160222",
-    description: "Box of 500.",
-    sku: "EP-CBS-25*4",
+    price: 0.00,
+    image: "",
+    description: "Phillips bugle head chipboard screws. High-quality zinc-plated screws for chipboard and wood applications. Available in multiple sizes.",
+    sku: "EP-CBS-ZINC",
+    specs: [
+      { key: "Material", value: "Steel" },
+      { key: "Finish", value: "Zinc" },
+      { key: "Available Sizes", value: "4x16, 4x25" }
+    ],
     inStock: true,
     createdAt: "2024-01-01",
     material: "Steel",
@@ -832,7 +504,7 @@ export const products: Product[] = [
     name: "Drywall Screws (Black) - 3.5x25",
     category: "Screws & Fasteners",
     price: 264,
-    image: "https://i.ebayimg.com/images/g/zg8AAOSwqIld-S1-/s-l1200.jpg",
+    image: "",
     description: "Black phosphate drywall screws. Box of 800.",
     sku: "EP-DW-BLK-25*6",
     inStock: true,
@@ -845,7 +517,7 @@ export const products: Product[] = [
     name: "Self Drilling Screws (Zinc) - 3.9x13",
     category: "Screws & Fasteners",
     price: 300,
-    image: "https://m.media-amazon.com/images/I/51ue103aduL._AC_UF894,1000_QL80_.jpg",
+    image: "",
     description: "CSK Phillips head self drilling screws. Box of 1000.",
     sku: "EP-SDS-13*7",
     inStock: true,
@@ -860,7 +532,7 @@ export const products: Product[] = [
     name: "Gola Profile Handle - Rose Gold",
     category: "Profiles",
     price: 2239,
-    image: "https://s.alicdn.com/@sc04/kf/Hdfe5411564f546879c3ee1e2a5a5d7f6v/252472008/Hdfe5411564f546879c3ee1e2a5a5d7f6v.jpg",
+    image: "",
     description: "Aluminum profile handle in Rose Gold finish.",
     sku: "EP-GS-EC-RGL",
     specs: [{ key: "Finish", value: "Rose Gold" }, { key: "Length", value: "3m (approx)" }],
@@ -874,7 +546,7 @@ export const products: Product[] = [
     name: "Gola Profile Handle - Ceramic Black",
     category: "Profiles",
     price: 1899,
-    image: "https://www.cocinasplus.com/wp-content/uploads/01_11_31385_24_Structura_406_M.webp",
+    image: "",
     description: "Aluminum profile handle in Ceramic Black finish.",
     sku: "EP-GS-EC-CBK",
     specs: [{ key: "Finish", value: "Ceramic Black" }],
@@ -955,46 +627,15 @@ export const products: Product[] = [
   // --- DRAWER ACCESSORIES ---
   {
     id: 906,
-    name: "Wicker - Natural Cane (100mm)",
+    name: "Wicker - Natural Cane",
     category: "Drawer Accessories",
-    price: 5929,
+    price: 0.00,
     image: "https://via.placeholder.com/150",
-    description: "Wicker basket in natural cane finish, 100mm width.",
-    sku: "EP-DA-WKR-100",
+    description: "Premium wicker basket in natural cane finish. Ideal for drawer organization and storage. Eco-friendly natural material with elegant finish. Available in multiple sizes to fit various drawer configurations.",
+    sku: "EP-DA-WKR",
     specs: [
       { key: "Material", value: "Wicker / Natural Cane" },
-      { key: "Width", value: "100mm" },
-      { key: "Height", value: "Available in 150mm, 200mm options" }
-    ],
-    inStock: true,
-    createdAt: "2024-01-01"
-  },
-  {
-    id: 907,
-    name: "Wicker - Natural Cane (150mm)",
-    category: "Drawer Accessories",
-    price: 6449,
-    image: "https://via.placeholder.com/150",
-    description: "Wicker basket in natural cane finish, 150mm width.",
-    sku: "EP-DA-WKR-150",
-    specs: [
-      { key: "Material", value: "Wicker / Natural Cane" },
-      { key: "Width", value: "150mm" }
-    ],
-    inStock: true,
-    createdAt: "2024-01-01"
-  },
-  {
-    id: 908,
-    name: "Wicker - Natural Cane (200mm)",
-    category: "Drawer Accessories",
-    price: 7129,
-    image: "https://via.placeholder.com/150",
-    description: "Wicker basket in natural cane finish, 200mm width.",
-    sku: "EP-DA-WKR-200",
-    specs: [
-      { key: "Material", value: "Wicker / Natural Cane" },
-      { key: "Width", value: "200mm" }
+      { key: "Available Sizes", value: "100mm, 150mm, 200mm" }
     ],
     inStock: true,
     createdAt: "2024-01-01"
@@ -1048,63 +689,35 @@ export const products: Product[] = [
     createdAt: "2024-01-01"
   },
   {
-    id: 912,
-    name: "Bowl Rack 500mm",
+    id: 907,
+    name: "Bowl Rack",
     category: "Drawer Accessories",
-    price: 2449,
+    price: 0.00,
     image: "https://via.placeholder.com/150",
-    description: "Stainless steel bowl rack organizer, 500mm.",
-    sku: "EP-DA-BR-500",
+    description: "Stainless steel bowl rack organizer. Premium quality construction for organized storage. Available in two sizes.",
+    sku: "EP-DA-BR",
     specs: [
-      { key: "Size", value: "500mm" }
+      { key: "Available Sizes", value: "500mm, 550mm" }
     ],
     inStock: true,
     createdAt: "2024-01-01"
   },
   {
-    id: 913,
-    name: "Bowl Rack 550mm",
+    id: 908,
+    name: "Dish Rack",
     category: "Drawer Accessories",
-    price: 2799,
+    price: 0.00,
     image: "https://via.placeholder.com/150",
-    description: "Stainless steel bowl rack organizer, 550mm.",
-    sku: "EP-DA-BR-550",
+    description: "Stainless steel dish rack organizer. Durable construction for efficient dish storage. Available in two sizes.",
+    sku: "EP-DA-DR",
     specs: [
-      { key: "Size", value: "550mm" }
+      { key: "Available Sizes", value: "500mm, 550mm" }
     ],
     inStock: true,
     createdAt: "2024-01-01"
   },
   {
-    id: 914,
-    name: "Dish Rack 500mm",
-    category: "Drawer Accessories",
-    price: 3139,
-    image: "https://via.placeholder.com/150",
-    description: "Stainless steel dish rack organizer, 500mm.",
-    sku: "EP-DA-DR-500",
-    specs: [
-      { key: "Size", value: "500mm" }
-    ],
-    inStock: true,
-    createdAt: "2024-01-01"
-  },
-  {
-    id: 915,
-    name: "Dish Rack 550mm",
-    category: "Drawer Accessories",
-    price: 3499,
-    image: "https://via.placeholder.com/150",
-    description: "Stainless steel dish rack organizer, 550mm.",
-    sku: "EP-DA-DR-550",
-    specs: [
-      { key: "Size", value: "550mm" }
-    ],
-    inStock: true,
-    createdAt: "2024-01-01"
-  },
-  {
-    id: 916,
+    id: 909,
     name: "Knife Stand",
     category: "Drawer Accessories",
     price: 699,
@@ -1119,7 +732,7 @@ export const products: Product[] = [
     createdAt: "2024-01-01"
   },
   {
-    id: 917,
+    id: 910,
     name: "Spoon Holder",
     category: "Drawer Accessories",
     price: 599,
@@ -1133,37 +746,23 @@ export const products: Product[] = [
     createdAt: "2024-01-01"
   },
   {
-    id: 918,
-    name: "Divider Box (100mm)",
+    id: 911,
+    name: "Divider Box",
     category: "Drawer Accessories",
-    price: 1249,
+    price: 0.00,
     image: "https://via.placeholder.com/150",
-    description: "Drawer divider box, 100mm width.",
-    sku: "EP-DA-DB-100",
+    description: "Drawer divider box for organized storage. Available in two widths to fit various drawer configurations.",
+    sku: "EP-DA-DB",
     specs: [
       { key: "Color", value: "Grey" },
-      { key: "Dimensions", value: "L-410mm W-100mm" }
+      { key: "Length", value: "410mm" },
+      { key: "Available Widths", value: "100mm, 150mm" }
     ],
     inStock: true,
     createdAt: "2024-01-01"
   },
   {
-    id: 919,
-    name: "Divider Box (150mm)",
-    category: "Drawer Accessories",
-    price: 1379,
-    image: "https://via.placeholder.com/150",
-    description: "Drawer divider box, 150mm width.",
-    sku: "EP-DA-DB-150",
-    specs: [
-      { key: "Color", value: "Grey" },
-      { key: "Dimensions", value: "L-410mm W-150mm" }
-    ],
-    inStock: true,
-    createdAt: "2024-01-01"
-  },
-  {
-    id: 920,
+    id: 912,
     name: "Lid Holder",
     category: "Drawer Accessories",
     price: 1999,

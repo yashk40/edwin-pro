@@ -81,12 +81,12 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                         )}
 
                         {/* Main Media Area */}
-                        <div className="relative w-full aspect-square lg:aspect-auto flex-1 bg-white flex items-center justify-center p-8 lg:p-12 overflow-hidden">
+                        <div className="relative w-full aspect-square lg:aspect-auto flex-1 bg-white overflow-hidden">
                             {mediaViewMode === 'photos' ? (
                                 <img
                                     src={galleryImages[activeImageIndex]}
                                     alt={product.name}
-                                    className="w-full h-full object-contain max-h-[70vh] animate-in fade-in duration-300"
+                                    className="w-full h-full object-cover animate-in fade-in duration-300"
                                 />
                             ) : (
                                 <div className="w-full h-full flex flex-col items-center justify-center animate-in fade-in zoom-in-95 duration-300">
