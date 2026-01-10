@@ -19,20 +19,18 @@ const BlurText: React.FC<BlurTextProps> = ({ text, className = '', delay = 0 }) 
         >
             {text}
             <style>{`
-                @keyframes blur-in {
+                @keyframes fade-in {
                     from {
                         opacity: 0;
-                        filter: blur(10px);
                         transform: translateY(10px);
                     }
                     to {
                         opacity: 1;
-                        filter: blur(0px);
                         transform: translateY(0);
                     }
                 }
                 .animate-blur-in {
-                    animation: blur-in 1s ease-out;
+                    animation: fade-in 0.8s ease-out;
                 }
             `}</style>
         </div>

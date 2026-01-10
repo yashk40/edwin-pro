@@ -46,7 +46,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ currentView, onNavigate }) => {
 
   return (
     <div className="md:hidden fixed bottom-6 left-0 right-0 z-[90] flex justify-center px-4 pointer-events-none">
-      <div className="pointer-events-auto w-full max-w-xs bg-slate-900/90 backdrop-blur-xl border border-white/10 text-white shadow-[0_8px_30px_rgb(0,0,0,0.4)] rounded-3xl p-2 flex justify-between items-center relative ring-1 ring-white/5">
+      <div className="pointer-events-auto w-full max-w-xs bg-slate-900/90  border border-white/10 text-white shadow-[0_8px_30px_rgb(0,0,0,0.4)] rounded-3xl p-2 flex justify-between items-center relative ring-1 ring-white/5">
         
         <NavItem view="home" label="Home" icon={HomeIcon} />
         
