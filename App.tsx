@@ -163,7 +163,7 @@ const App: React.FC = () => {
         href={`https://wa.me/${CONFIG.contact.phoneRaw.replace(/[^0-9]/g, '')}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-30 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transform hover:scale-110 transition-all duration-300"
+        className="hidden md:flex fixed bottom-6 right-6 md:bottom-8 md:right-8 z-30 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transform hover:scale-110 transition-all duration-300"
         aria-label="Contact us on WhatsApp"
       >
         <WhatsAppIcon className="w-8 h-8" />

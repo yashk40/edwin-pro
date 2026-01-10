@@ -207,7 +207,7 @@ const Home: React.FC<HomeProps> = ({ products, onNavigate, onCategorySelect }) =
                             {CONFIG.homepage.cta.description}
                         </p>
                         <button
-                            onClick={() => onNavigate('store')}
+                            onClick={() => onNavigate('catalog')}
                             className="px-10 py-5 bg-slate-900 text-white rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-white hover:text-slate-900 transition-all transform hover:scale-105 shadow-2xl"
                         >
                             {CONFIG.homepage.cta.buttonText}
