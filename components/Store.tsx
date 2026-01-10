@@ -143,7 +143,7 @@ const Store: React.FC<StoreProps> = ({ products, onNavigate, onModalToggle, init
                 <div className="flex flex-col lg:flex-row gap-8 items-start">
 
                     {/* Desktop Sidebar */}
-                    <aside className="hidden lg:block w-72 shrink-0 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sticky top-24">
+                    <aside className="hidden lg:block w-72 shrink-0 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sticky top-28">
                         <StoreFilters {...FiltersProps} />
                     </aside>
 

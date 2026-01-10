@@ -32,7 +32,7 @@ const FilterSection: React.FC<{
 }> = ({ title, items, selectedItems, onToggle }) => (
   <div className="space-y-3">
     <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">{title}</h4>
-    <div className="space-y-2 max-h-[200px] overflow-y-auto custom-scrollbar pr-2">
+    <div className="space-y-2">
       {items.map((item) => {
         const isSelected = selectedItems.includes(item.name);
         return (
