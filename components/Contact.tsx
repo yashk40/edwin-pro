@@ -1,6 +1,6 @@
 
 import React from 'react';
-import FadeIn from './FadeIn';
+// import FadeIn from './FadeIn';
 import { PhoneIcon, MessageCircleIcon, BuildingIcon, ArrowLeftIcon } from './Icons';
 import { CONFIG } from '../config';
 
@@ -25,7 +25,7 @@ const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
                <span className="text-slate-900 font-bold hidden md:inline">Contact Us</span>
             </div>
 
-            <FadeIn>
+            {/* <FadeIn> */}
                <div className="text-center max-w-3xl mx-auto mb-16">
                   <span className="text-primary-600 font-bold tracking-[0.2em] text-xs uppercase mb-3 block">Get in Touch</span>
                   <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 font-display mb-6">
@@ -35,11 +35,11 @@ const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
                      We'd love to discuss your space. Visit our studio or drop us a message.
                   </p>
                </div>
-            </FadeIn>
+            {/* </FadeIn> */}
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
                {/* Contact Info */}
-               <FadeIn delay={100} className="h-full">
+               {/* <FadeIn delay={100} className="h-full"> */}
                   <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-100 h-full">
                      <h3 className="text-2xl font-bold text-slate-900 mb-8">Contact Information</h3>
 
@@ -91,10 +91,10 @@ const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
                         </div>
                      </div>
                   </div>
-               </FadeIn>
+               {/* </FadeIn>
 
                {/* Form */}
-               <FadeIn delay={200} className="h-full">
+               {/* <FadeIn delay={200} className="h-full"> */} 
                   <form className="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-slate-100 h-full flex flex-col">
                      <h3 className="text-2xl font-bold text-slate-900 mb-6">Request a Call Back</h3>
 
@@ -125,7 +125,7 @@ const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
                         Send Request
                      </button>
                   </form>
-               </FadeIn>
+               {/* </FadeIn> */}
             </div>
          </div>
       </div>

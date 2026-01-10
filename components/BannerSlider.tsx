@@ -77,7 +77,7 @@ const BannerSlider: React.FC = memo(() => {
 
                     <div data-aos="fade-up" data-aos-delay="300">
                         <a
-                            href="#store"
+                            href="/catalog"
                             className="inline-flex items-center gap-3 bg-primary-500 text-slate-900 px-8 py-4 rounded-xl font-bold uppercase text-sm hover:bg-white transition-colors"
                         >
                             EXPLORE COLLECTION

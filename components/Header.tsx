@@ -1,19 +1,16 @@
 
 import React from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
-import { SettingsIcon } from './Icons';
 import { CONFIG } from '../config';
-import Tooltip from './Tooltip';
 
 export type ViewState = 'home' | 'store' | 'contact';
 
 interface HeaderProps {
   currentView: ViewState | 'admin';
   onNavigate: (view: ViewState) => void;
-  onOpenSettings?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = React.memo(({ currentView, onNavigate, onOpenSettings }) => {
+const Header: React.FC<HeaderProps> = React.memo(({ currentView, onNavigate }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -86,17 +83,6 @@ const Header: React.FC<HeaderProps> = React.memo(({ currentView, onNavigate, onO
 
             {/* Right Actions */}
             <div className="flex items-center gap-2 md:gap-4 lg:gap-5">
-              {/* Settings Button */}
-              <Tooltip content="Settings" position="bottom">
-                <button
-                  onClick={onOpenSettings}
-                  className="p-2 text-slate-400 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 transition-colors hover:rotate-90 duration-500"
-                  aria-label="Open Settings"
-                >
-                  <SettingsIcon className="w-5 h-5 md:w-5 md:h-5" />
-                </button>
-              </Tooltip>
-
               {/* Mobile 'Get Quote' Button */}
               <button
                 onClick={() => navigate('/contact')}

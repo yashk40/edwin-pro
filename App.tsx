@@ -7,9 +7,7 @@ import { WhatsAppIcon } from './components/Icons';
 import BottomNav from './components/BottomNav';
 import Home from './components/Home';
 import LoadingScreen from './components/LoadingScreen';
-import { MessageCircleIcon } from './components/Icons';
 import { CONFIG } from './config';
-import { useSettings } from './contexts/SettingsContext';
 import { getProducts } from './utils/productManager';
 import { Product } from './data';
 import { useLenis } from './hooks/useLenis';
@@ -17,8 +15,6 @@ import { useLenis } from './hooks/useLenis';
 // Lazy load heavy view components
 const Store = lazy(() => import('./components/Store'));
 const Contact = lazy(() => import('./components/Contact'));
-const SettingsModal = lazy(() => import('./components/SettingsModal'));
-// const AdminPanel = lazy(() => import('./components/AdminPanel'));
 const ProductRoute = lazy(() => import('./components/ProductRoute'));
 
 const App: React.FC = () => {
@@ -26,9 +22,7 @@ const App: React.FC = () => {
   const navigate = useNavigate();
 
   const [storeCategory, setStoreCategory] = useState('All');
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isFullScreenModalOpen, setIsFullScreenModalOpen] = useState(false);
-  const { features } = useSettings();
 
   // Products State
   const [products, setProducts] = useState<Product[]>([]);
@@ -45,30 +39,27 @@ const App: React.FC = () => {
     setProducts(updatedProducts);
   };
 
-  // Dynamic Title Update
+  // Refresh AOS on route change to ensure animations work
+  useEffect(() => {
+    if ((window as any).AOS) {
+      // Scroll to top on route change
+      window.scrollTo(0, 0);
+
+      // Reinitialize AOS completely to fix animations on navigation
+      setTimeout(() => {
+        (window as any).AOS.refreshHard(); // Force complete refresh
+      }, 100);
+    }
+  }, [location.pathname]);
+
+  // Dynamic Title Update and ensure light mode
   useEffect(() => {
     document.title = `${CONFIG.company.name} | ${CONFIG.company.tagline}`;
 
-    // Theme Init - always default to light mode
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | 'system' | null;
+    // Always use light mode
     const root = document.documentElement;
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    let effectiveTheme: 'light' | 'dark';
-
-    if (savedTheme === 'dark') {
-      effectiveTheme = 'dark';
-    } else if (savedTheme === 'system') {
-      effectiveTheme = systemPrefersDark ? 'dark' : 'light';
-    } else {
-      effectiveTheme = 'light';
-    }
-
-    if (effectiveTheme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
+    root.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
 
     // Performance: Detect Mobile/Low-Power devices and disable Glassmorphism
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -95,30 +86,15 @@ const App: React.FC = () => {
   };
 
   const currentView = getCurrentView();
-  const shouldShowBottomNav = features.enableMobileBottomNav && !isFullScreenModalOpen && !isSettingsOpen && currentView !== 'admin';
+  const shouldShowBottomNav = !isFullScreenModalOpen && currentView !== 'admin';
 
   return (
-    <div className={`bg-primary-50 text-slate-800 dark:bg-slate-900 dark:text-primary-50 antialiased ${shouldShowBottomNav ? 'pb-24' : 'pb-0'} md:pb-0 overflow-x-hidden font-sans selection:bg-primary-100`}>
-
-      {/* Modals with Suspense */}
-      <Suspense fallback={null}>
-        {isSettingsOpen && (
-          <SettingsModal
-            onClose={() => setIsSettingsOpen(false)}
-            onNavigate={(view) => {
-              setIsSettingsOpen(false);
-              if (view === 'admin') navigate('/admin');
-              else navigate(view === 'home' ? '/' : `/${view}`);
-            }}
-          />
-        )}
-      </Suspense>
+    <div className={`bg-primary-50 text-slate-800 antialiased ${shouldShowBottomNav ? 'pb-24' : 'pb-0'} md:pb-0 overflow-x-hidden font-sans selection:bg-primary-100`}>
 
       {/* Header */}
       <Header
         currentView={currentView}
         onNavigate={(view) => navigate(view === 'home' ? '/' : `/${view}`)}
-        onOpenSettings={() => setIsSettingsOpen(true)}
       />
 
       {/* Main Content with Routes */}

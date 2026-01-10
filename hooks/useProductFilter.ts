@@ -28,6 +28,7 @@ export const useProductFilter = (products: Product[], initialCategory: string = 
 
   // Initialize category from props if URL is empty AND initialCategory is provided (first load)
   useEffect(() => {
+    // Only set category if it's not 'All' and not already in URL
     if (initialCategory && initialCategory !== 'All' && !searchParams.has('categories')) {
       setSearchParams(prev => {
         prev.set('categories', initialCategory);

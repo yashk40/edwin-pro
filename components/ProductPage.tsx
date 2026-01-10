@@ -84,19 +84,31 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                         {/* Main Media Area */}
                         <div className="relative w-full aspect-square lg:aspect-auto flex-1 bg-white overflow-hidden">
                             {mediaViewMode === 'photos' ? (
-                                <img
-                                    src={galleryImages[activeImageIndex]}
-                                    alt={product.name}
-                                    className="w-full h-full object-contain animate-in fade-in duration-300"
-                                />
+                                galleryImages[activeImageIndex] ? (
+                                    <img
+                                        src={galleryImages[activeImageIndex]}
+                                        alt={product.name}
+                                        className="w-full h-full object-contain animate-in fade-in duration-300"
+                                    />
+                                ) : (
+                                    <div className="w-full h-full flex items-center justify-center bg-slate-100">
+                                        <ImageIcon className="w-16 h-16 text-slate-300" />
+                                    </div>
+                                )
                             ) : (
                                 <div className="w-full h-full flex flex-col items-center justify-center animate-in fade-in zoom-in-95 duration-300">
                                     <div className="relative w-full h-full border-2 border-dashed border-primary-200 rounded-xl bg-primary-50/30 p-4">
-                                        <img
-                                            src={product.installationDrawing}
-                                            alt="Installation Diagram"
-                                            className="w-full h-full object-contain mix-blend-multiply opacity-90"
-                                        />
+                                        {product.installationDrawing ? (
+                                            <img
+                                                src={product.installationDrawing}
+                                                alt="Installation Diagram"
+                                                className="w-full h-full object-contain mix-blend-multiply opacity-90"
+                                            />
+                                        ) : (
+                                            <div className="w-full h-full flex items-center justify-center">
+                                                <PenToolIcon className="w-16 h-16 text-slate-300" />
+                                            </div>
+                                        )}
                                         <div className="absolute bottom-4 right-4 bg-white/80 backdrop-blur px-3 py-1 rounded text-[10px] font-mono text-primary-800 border border-primary-100">
                                             Scale 1:50 • Blueprint
                                         </div>
@@ -115,7 +127,13 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                                         onClick={() => setActiveImageIndex(idx)}
                                         className={`relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-all ${activeImageIndex === idx ? 'border-primary-500 ring-2 ring-primary-500 ring-offset-2' : 'border-transparent opacity-60 hover:opacity-100 hover:border-slate-300'}`}
                                     >
-                                        <img src={img} className="w-full h-full object-cover" alt="" />
+                                        {img ? (
+                                            <img src={img} className="w-full h-full object-cover" alt="" />
+                                        ) : (
+                                            <div className="w-full h-full flex items-center justify-center bg-slate-100">
+                                                <ImageIcon className="w-4 h-4 text-slate-300" />
+                                            </div>
+                                        )}
                                     </button>
                                 ))}
                             </div>

@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ViewState } from './Header';
-import FadeIn from './FadeIn';
 import { Product } from '../data';
 import { useProductFilter } from '../hooks/useProductFilter';
 import { StoreProductCard } from './StoreProductCard';
@@ -233,12 +232,11 @@ const Store: React.FC<StoreProps> = ({ products, onNavigate, onModalToggle, init
                             ) : (
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                                     {paginatedProducts.map(product => (
-                                        <FadeIn key={product.id}>
-                                            <StoreProductCard
-                                                product={product}
-                                                onClick={handleProductClick}
-                                            />
-                                        </FadeIn>
+                                        <StoreProductCard
+                                            key={product.id}
+                                            product={product}
+                                            onClick={handleProductClick}
+                                        />
                                     ))}
                                 </div>
                             )}

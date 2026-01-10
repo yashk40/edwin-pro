@@ -144,7 +144,7 @@ const Home: React.FC<HomeProps> = ({ products, onNavigate, onCategorySelect }) =
                         {/* 6th Card: See All Categories */}
                         <FadeIn delay={5 * 30}>
                             <div
-                                onClick={() => onNavigate('store')}
+                                onClick={() => onNavigate('catalog')}
                                 className="group relative h-96 md:h-[500px] rounded-3xl overflow-hidden cursor-pointer shadow-soft hover:shadow-glow transition-all duration-300 border border-primary-100 hover:border-primary-400 bg-slate-900"
                             >
                                 <img

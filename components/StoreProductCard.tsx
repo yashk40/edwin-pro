@@ -1,5 +1,5 @@
 
-import React, { useState, memo, useMemo } from 'react';
+import React, { useState, memo, useMemo, useEffect } from 'react';
 import { Product } from '../data';
 
 export const ProductSkeleton = () => (
@@ -27,6 +27,14 @@ export const StoreProductCard = memo(({
 }: StoreProductCardProps) => {
     const [isImageLoaded, setIsImageLoaded] = useState(false);
 
+    // Fallback: Always show image after 2 seconds to prevent invisible cards
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsImageLoaded(true);
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, []);
+
     // Status Logic
     const isLowStock = product.inStock && product.stockLevel !== undefined && product.stockLevel < 5;
     const isOnSale = product.originalPrice && product.originalPrice > product.price;
@@ -53,9 +61,9 @@ export const StoreProductCard = memo(({
                 <img
                     src={product.image}
                     alt={product.name}
-                    loading="lazy"
-                    decoding="async"
-                    onLoad={() => setIsImageLoaded(true)}
+                    // decoding="async"
+                    // onLoad={() => setIsImageLoaded(true)}
+                    // onError={() => setIsImageLoaded(true)}
                     className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 transform-gpu backface-hidden ${isImageLoaded ? 'opacity-100' : 'opacity-0'} ${!product.inStock ? 'grayscale' : ''}`}
                 />
 
