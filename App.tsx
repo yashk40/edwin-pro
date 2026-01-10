@@ -18,7 +18,7 @@ import { useLenis } from './hooks/useLenis';
 const Store = lazy(() => import('./components/Store'));
 const Contact = lazy(() => import('./components/Contact'));
 const SettingsModal = lazy(() => import('./components/SettingsModal'));
-const AdminPanel = lazy(() => import('./components/AdminPanel'));
+// const AdminPanel = lazy(() => import('./components/AdminPanel'));
 const ProductRoute = lazy(() => import('./components/ProductRoute'));
 
 const App: React.FC = () => {
@@ -157,7 +157,7 @@ const App: React.FC = () => {
               path="/catalog/:productSlug"
               element={<ProductRoute products={products} />}
             />
-            <Route
+            {/* <Route
               path="/admin"
               element={
                 <AdminPanel
@@ -166,7 +166,7 @@ const App: React.FC = () => {
                   onBack={() => navigate('/')}
                 />
               }
-            />
+            /> */}
           </Routes>
         </Suspense>
       </main>
