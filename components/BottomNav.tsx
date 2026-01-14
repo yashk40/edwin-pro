@@ -23,10 +23,10 @@ const BottomNav: React.FC<BottomNavProps> = ({ currentView, onNavigate }) => {
         className="relative flex flex-col items-center justify-center flex-1 h-14 group transition-all duration-300"
         aria-label={label}
       >
-        <div className={`relative p-2 rounded-xl transition-all duration-300 ${isActive ? 'bg-amber-50 shadow-sm' : 'group-hover:bg-slate-50'}`}>
+        <div className={`relative p-2 rounded-xl transition-all duration-300 ${isActive ? 'bg-primary-50 shadow-sm' : 'group-hover:bg-slate-50'}`}>
           <Icon
             className={`h-6 w-6 transition-all duration-300 ${isActive
-              ? 'text-amber-600 scale-110'
+              ? 'text-primary-600 scale-110'
               : 'text-slate-500 group-hover:text-slate-700'
               }`}
             strokeWidth={isActive ? 2.5 : 2}
@@ -34,7 +34,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ currentView, onNavigate }) => {
         </div>
 
         {/* Active Dot Indicator */}
-        <div className={`absolute bottom-1 w-1 h-1 rounded-full transition-all duration-500 ${isActive ? 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)] scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
+        <div className={`absolute bottom-1 w-1 h-1 rounded-full transition-all duration-500 ${isActive ? 'bg-primary-500 shadow-[0_0_8px_rgba(255,192,0,0.5)] scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
       </button>
     );
   };
@@ -45,7 +45,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ currentView, onNavigate }) => {
       <div className="absolute inset-0 bg-white/90 backdrop-blur-xl border-t border-slate-200 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]" />
 
       {/* Decorative Accent Line */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/4 h-[2px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent rounded-full" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/4 h-[2px] bg-gradient-to-r from-transparent via-primary-400/40 to-transparent rounded-full" />
 
       <div className="relative flex justify-around items-center h-16 px-4 pb-safe">
         <NavItem view="home" label="Home" icon={HomeIcon} />
@@ -54,10 +54,10 @@ const BottomNav: React.FC<BottomNavProps> = ({ currentView, onNavigate }) => {
           <button
             onClick={(e) => handleNav(e, 'contact')}
             aria-label="Contact Us"
-            className={`relative w-14 h-14 flex items-center justify-center rounded-full shadow-[0_8px_25px_rgba(217,119,6,0.25)] transition-all duration-300 active:scale-90 hover:scale-105
+            className={`relative w-14 h-14 flex items-center justify-center rounded-full shadow-[0_8px_25px_rgba(255,192,0,0.25)] transition-all duration-300 active:scale-90 hover:scale-105
                 ${currentView === 'contact'
-                ? 'bg-gradient-to-tr from-amber-500 to-amber-600 ring-4 ring-white shadow-xl'
-                : 'bg-gradient-to-tr from-amber-500 to-amber-600'
+                ? 'bg-gradient-to-tr from-primary-500 to-primary-600 ring-4 ring-white shadow-xl'
+                : 'bg-gradient-to-tr from-primary-500 to-primary-600'
               }
               `}
           >
@@ -66,7 +66,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ currentView, onNavigate }) => {
 
           {/* External Halo Effect */}
           {currentView === 'contact' && (
-            <div className="absolute -inset-1 rounded-full bg-amber-400/10 animate-pulse z-0" />
+            <div className="absolute -inset-1 rounded-full bg-primary-400/10 animate-pulse z-0" />
           )}
         </div>
 

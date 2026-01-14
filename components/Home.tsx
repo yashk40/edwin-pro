@@ -130,7 +130,12 @@ const Home: React.FC<HomeProps> = ({ products, onNavigate, onCategorySelect }) =
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-primary-950/90 via-primary-900/20 to-transparent"></div>
                                         <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full">
-                                            <h3 className="text-3xl md:text-4xl font-bold text-white mb-3 font-display">{category}</h3>
+                                            <BlurText
+                                                text={category}
+                                                className="text-3xl md:text-4xl font-bold text-white mb-3 font-display"
+                                                animateBy="words"
+                                                direction="top"
+                                            />
                                             <div className="flex items-center justify-between">
                                                 <span className="text-primary-200 font-bold uppercase text-sm tracking-widest group-hover:text-primary-100 transition-colors">
                                                     {count} Products
