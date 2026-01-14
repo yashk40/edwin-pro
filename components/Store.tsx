@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ViewState } from './Header';
 import { Product } from '../data';
 import { useProductFilter } from '../hooks/useProductFilter';
@@ -19,6 +19,7 @@ interface StoreProps {
 
 const Store: React.FC<StoreProps> = ({ products, onNavigate, onModalToggle, initialCategory = 'All' }) => {
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
     const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
     const {
@@ -43,13 +44,25 @@ const Store: React.FC<StoreProps> = ({ products, onNavigate, onModalToggle, init
         resetFilters
     } = useProductFilter(products, initialCategory);
 
-    // Handle Scroll to top on page change
+    // Handle Scroll to top on page or filter change - forced jump
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, [currentPage]);
+        const timer = setTimeout(() => {
+            if ((window as any).lenis) {
+                (window as any).lenis.scrollTo(0, { immediate: true });
+            } else {
+                window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+            }
+        }, 10);
+        return () => clearTimeout(timer);
+    }, [currentPage, searchParams.toString()]);
 
     // Handler for product click
     const handleProductClick = (product: Product) => {
+        // Save current catalog URL parameters for back navigation
+        const currentParams = searchParams.toString();
+        if (currentParams) {
+            sessionStorage.setItem('catalogParams', currentParams);
+        }
         navigate(`/catalog/${createSlug(product.name)}`);
         window.scrollTo(0, 0);
     };

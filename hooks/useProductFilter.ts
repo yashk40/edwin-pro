@@ -3,7 +3,7 @@ import { useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Product } from '../data';
 
-const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_PAGE = 8;
 
 export const useProductFilter = (products: Product[], initialCategory: string = 'All') => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -75,7 +75,7 @@ export const useProductFilter = (products: Product[], initialCategory: string = 
       // 4. Price Filter
       const min = priceMin ? parseFloat(priceMin) : 0;
       const max = priceMax ? parseFloat(priceMax) : Infinity;
-      const matchesPrice = product.price >= min && product.price <= max;
+      const matchesPrice = product.price === undefined || (product.price >= min && product.price <= max);
 
       // 5. Material Filter
       const matchesMaterial = selectedMaterials.length === 0 || (product.material && selectedMaterials.includes(product.material));
@@ -88,9 +88,11 @@ export const useProductFilter = (products: Product[], initialCategory: string = 
 
     // 7. Sorting
     result = result.sort((a, b) => {
+      const priceA = a.price ?? 0;
+      const priceB = b.price ?? 0;
       switch (sort) {
-        case 'price-asc': return a.price - b.price;
-        case 'price-desc': return b.price - a.price;
+        case 'price-asc': return priceA - priceB;
+        case 'price-desc': return priceB - priceA;
         case 'newest': return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
         default: return 0; // featured/default order
       }
@@ -101,6 +103,17 @@ export const useProductFilter = (products: Product[], initialCategory: string = 
 
   // Pagination Logic
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+
+  // Safety check: if currentPage exceeds totalPages, reset to totalPages
+  useEffect(() => {
+    if (currentPage > totalPages && totalPages > 0) {
+      setSearchParams(prev => {
+        const newParams = new URLSearchParams(prev);
+        newParams.set('page', totalPages.toString());
+        return newParams;
+      }, { replace: true });
+    }
+  }, [totalPages, currentPage]);
 
   const paginatedProducts = useMemo(() => {
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;

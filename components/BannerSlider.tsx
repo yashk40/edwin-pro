@@ -2,6 +2,7 @@
 import React, { memo, useState, useEffect } from 'react';
 import { CONFIG } from '../config';
 import { ArrowRightIcon } from './Icons';
+import BlurText from './BlurText';
 
 const BannerSlider: React.FC = memo(() => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -59,13 +60,12 @@ const BannerSlider: React.FC = memo(() => {
                         </span>
                     </div>
 
-                    <h1
+                    <BlurText
+                        text="Engineered for the Modern Kitchen."
                         className="text-4xl md:text-6xl font-bold text-white mb-6"
-                        data-aos="fade-up"
-                        data-aos-delay="100"
-                    >
-                        Engineered for the Modern Kitchen.
-                    </h1>
+                        animateBy="words"
+                        direction="top"
+                    />
 
                     <p
                         className="text-lg md:text-xl text-slate-200 mb-10 max-w-2xl"

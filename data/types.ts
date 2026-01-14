@@ -4,13 +4,12 @@ export interface Product {
   name: string;
   category: string;
   series?: string;
-  price: number;
+  price?: number;
   originalPrice?: number;
   image: string;
   description: string;
   keyFeatures?: string[];
   // New fields for extended product info
-  sku?: string; // Specific Stock Keeping Unit ID
   details?: string; // Long form writeup
   specs?: { key: string; value: string }[]; // Key-value pairs for the table
   bulkPricing?: { minQty: number; maxQty?: number; price: number; label?: string }[]; // Dynamic pricing tiers

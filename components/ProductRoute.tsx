@@ -37,8 +37,11 @@ const ProductRoute: React.FC<ProductRouteProps> = ({ products }) => {
 
     // Always navigate back to catalog
     const handleBack = () => {
-        console.log('ProductRoute: Navigating to /catalog');
-        navigate('/catalog');
+        console.log('ProductRoute: Navigating back to catalog with preserved params');
+        // Try to restore previous catalog parameters
+        const savedParams = sessionStorage.getItem('catalogParams');
+        const backUrl = savedParams ? `/catalog?${savedParams}` : '/catalog';
+        navigate(backUrl);
     };
 
     return <ProductPage product={product} onBack={handleBack} />;

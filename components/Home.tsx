@@ -10,6 +10,7 @@ import BrandSlider from './BrandSlider';
 import { CONFIG } from '../config';
 import { Product } from '../data';
 import { ViewState } from './Header';
+import BlurText from './BlurText';
 
 interface HomeProps {
     products: Product[];
@@ -92,9 +93,12 @@ const Home: React.FC<HomeProps> = ({ products, onNavigate, onCategorySelect }) =
                 <div className="container mx-auto px-6 max-w-7xl">
                     <div className="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up" data-aos-duration="800">
                         <span className="text-primary-600 font-bold tracking-[0.2em] text-xs uppercase mb-3 block">Catalog</span>
-                        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 font-display mb-6">
-                            Shop by Category
-                        </h2>
+                        <BlurText
+                            text="Shop by Category"
+                            className="text-3xl md:text-5xl font-bold text-slate-900 font-display mb-6 justify-center"
+                            animateBy="words"
+                            direction="top"
+                        />
                         <p className="text-slate-500 text-lg leading-relaxed">
                             Explore our wide range of professional hardware and tools.
                         </p>
@@ -148,7 +152,7 @@ const Home: React.FC<HomeProps> = ({ products, onNavigate, onCategorySelect }) =
                                 className="group relative h-96 md:h-[500px] rounded-3xl overflow-hidden cursor-pointer shadow-soft hover:shadow-glow transition-all duration-300 border border-primary-100 hover:border-primary-400 bg-slate-900"
                             >
                                 <img
-                                    src="https://images.unsplash.com/photo-1513506003011-38f45e86c430?auto=format&fit=crop&w=800&q=75&fm=webp"
+                                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=75&fm=webp"
                                     alt="All Categories"
                                     loading="lazy"
                                     decoding="async"
@@ -160,9 +164,12 @@ const Home: React.FC<HomeProps> = ({ products, onNavigate, onCategorySelect }) =
                                     <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary-500 flex items-center justify-center group-hover:bg-white group-hover:text-primary-600 transition-all text-slate-900 shadow-xl mb-6 group-hover:scale-110">
                                         <ArrowRightIcon className="w-8 h-8 md:w-10 md:h-10" />
                                     </div>
-                                    <h3 className="text-3xl md:text-4xl font-bold text-white font-display mb-3">
-                                        View All<br />Categories
-                                    </h3>
+                                    <BlurText
+                                        text="View All Categories"
+                                        className="text-3xl md:text-4xl font-bold text-white font-display mb-3 justify-center"
+                                        animateBy="words"
+                                        direction="top"
+                                    />
                                     <span className="text-primary-200 font-bold uppercase text-sm tracking-widest group-hover:text-white transition-colors">
                                         Browse Full Catalog
                                     </span>
@@ -196,13 +203,12 @@ const Home: React.FC<HomeProps> = ({ products, onNavigate, onCategorySelect }) =
                         <span className="text-slate-900 font-bold tracking-[0.2em] text-sm uppercase mb-6 block opacity-70">
                             {CONFIG.homepage.cta.titleLabel}
                         </span>
-                        <h2 className="text-4xl md:text-6xl font-bold text-slate-900 font-display mb-8 leading-tight">
-                            {CONFIG.homepage.cta.title.split('\n').map((line, i) => (
-                                <React.Fragment key={i}>
-                                    {line}<br />
-                                </React.Fragment>
-                            ))}
-                        </h2>
+                        <BlurText
+                            text={CONFIG.homepage.cta.title.replace('\n', ' ')}
+                            className="text-4xl md:text-6xl font-bold text-slate-900 font-display mb-8 leading-tight justify-center"
+                            animateBy="words"
+                            direction="top"
+                        />
                         <p className="text-xl text-slate-800 mb-12 font-medium max-w-2xl mx-auto opacity-80">
                             {CONFIG.homepage.cta.description}
                         </p>

@@ -8,6 +8,8 @@ import {
 } from './Icons';
 import { Product } from '../data';
 import PricingTable from './PricingTable';
+import OptimizedImage from './OptimizedImage';
+import BlurText from './BlurText';
 
 interface ProductPageProps {
     product: Product;
@@ -44,8 +46,11 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                 <div className="flex items-center gap-2 mb-6 text-sm relative z-0">
                     <button
                         onClick={() => {
-                            console.log('ProductPage: Back button clicked - navigating to /catalog');
-                            navigate('/catalog');
+                            console.log('ProductPage: Back button clicked - navigating back to catalog');
+                            // Try to restore previous catalog parameters
+                            const savedParams = sessionStorage.getItem('catalogParams');
+                            const backUrl = savedParams ? `/catalog?${savedParams}` : '/catalog';
+                            navigate(backUrl);
                         }}
                         className="text-slate-500 hover:text-slate-900 font-bold flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm transition-colors cursor-pointer"
                     >
@@ -54,7 +59,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                     <span className="text-slate-300 hidden md:inline" style={{ cursor: "default" }}>/</span>
                     <span className="text-slate-500 hidden md:inline" style={{ cursor: "default" }}>{product.category}</span>
                     <span className="text-slate-300 hidden md:inline" style={{ cursor: "default" }}>/</span>
-                    <span className="text-slate-900 font-bold truncate max-w-[200px] hidden md:inline" style={{ cursor: "default" }}>{product.name}</span>
+                    <span className="text-900 font-bold truncate max-w-[200px] hidden md:inline" style={{ cursor: "default" }}>{product.category}: {product.name}</span>
                 </div>
 
                 {/* Product Layout */}
@@ -85,10 +90,11 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                         <div className="relative w-full aspect-square lg:aspect-auto flex-1 bg-white overflow-hidden">
                             {mediaViewMode === 'photos' ? (
                                 galleryImages[activeImageIndex] ? (
-                                    <img
+                                    <OptimizedImage
                                         src={galleryImages[activeImageIndex]}
                                         alt={product.name}
-                                        className="w-full h-full object-contain animate-in fade-in duration-300"
+                                        className="w-full h-full animate-in fade-in duration-300"
+                                        aspectRatio="auto"
                                     />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center bg-slate-100">
@@ -99,10 +105,11 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                                 <div className="w-full h-full flex flex-col items-center justify-center animate-in fade-in zoom-in-95 duration-300">
                                     <div className="relative w-full h-full border-2 border-dashed border-primary-200 rounded-xl bg-primary-50/30 p-4">
                                         {product.installationDrawing ? (
-                                            <img
+                                            <OptimizedImage
                                                 src={product.installationDrawing}
                                                 alt="Installation Diagram"
-                                                className="w-full h-full object-contain mix-blend-multiply opacity-90"
+                                                className="w-full h-full mix-blend-multiply opacity-90"
+                                                aspectRatio="auto"
                                             />
                                         ) : (
                                             <div className="w-full h-full flex items-center justify-center">
@@ -127,13 +134,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                                         onClick={() => setActiveImageIndex(idx)}
                                         className={`relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-all ${activeImageIndex === idx ? 'border-primary-500 ring-2 ring-primary-500 ring-offset-2' : 'border-transparent opacity-60 hover:opacity-100 hover:border-slate-300'}`}
                                     >
-                                        {img ? (
-                                            <img src={img} className="w-full h-full object-cover" alt="" />
-                                        ) : (
-                                            <div className="w-full h-full flex items-center justify-center bg-slate-100">
-                                                <ImageIcon className="w-4 h-4 text-slate-300" />
-                                            </div>
-                                        )}
+                                        <OptimizedImage src={img} alt="" className="w-full h-full" />
                                     </button>
                                 ))}
                             </div>
@@ -163,10 +164,12 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                                 </span>
                             </div>
 
-                            <h1 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight font-display mb-3">{product.name}</h1>
-                            {product.sku && (
-                                <div className="text-sm font-mono text-slate-400 mb-6 bg-slate-50 inline-block px-2 py-1 rounded">SKU: {product.sku}</div>
-                            )}
+                            <BlurText
+                                text={`${product.category}: ${product.name}`}
+                                className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight font-display mb-3"
+                                animateBy="words"
+                                direction="top"
+                            />
 
                             {/* Price or Pricing Table */}
                             {product.pricingTable && product.pricingTable.length > 0 ? (
@@ -175,12 +178,14 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, onBack }) => {
                                     <PricingTable pricingData={product.pricingTable} />
                                 </div>
                             ) : (
-                                <div className="flex items-baseline gap-3 mb-8">
-                                    <span className="text-5xl font-bold text-slate-900">₹{product.price.toLocaleString('en-IN')}</span>
-                                    {product.originalPrice && (
-                                        <span className="text-xl text-slate-400 line-through decoration-2">₹{product.originalPrice.toLocaleString('en-IN')}</span>
-                                    )}
-                                </div>
+                                (product.price !== undefined && product.price > 0) && (
+                                    <div className="flex items-baseline gap-3 mb-8">
+                                        <span className="text-5xl font-bold text-slate-900">₹{product.price.toLocaleString('en-IN')}</span>
+                                        {product.originalPrice && (
+                                            <span className="text-xl text-slate-400 line-through decoration-2">₹{product.originalPrice.toLocaleString('en-IN')}</span>
+                                        )}
+                                    </div>
+                                )
                             )}
                         </div>
 

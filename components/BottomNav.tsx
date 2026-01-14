@@ -2,7 +2,6 @@
 import React from 'react';
 import { HomeIcon, PhoneIcon, ShoppingCartIcon } from './Icons';
 import { ViewState } from './Header';
-import Tooltip from './Tooltip';
 
 interface BottomNavProps {
   currentView: ViewState;
@@ -19,55 +18,63 @@ const BottomNav: React.FC<BottomNavProps> = ({ currentView, onNavigate }) => {
   const NavItem = ({ view, label, icon: Icon }: { view: ViewState; label: string; icon: React.FC<React.SVGProps<SVGSVGElement>> }) => {
     const isActive = currentView === view;
     return (
-      <Tooltip content={label} position="top">
-        <button
-          onClick={(e) => handleNav(e, view)}
-          className="relative flex flex-col items-center justify-center w-14 h-14 group"
-        >
-          {isActive && (
-            <span className="absolute inset-0 bg-white/10 rounded-2xl animate-in zoom-in-90 duration-200"></span>
-          )}
-
+      <button
+        onClick={(e) => handleNav(e, view)}
+        className="relative flex flex-col items-center justify-center flex-1 h-14 group transition-all duration-300"
+        aria-label={label}
+      >
+        <div className={`relative p-2 rounded-xl transition-all duration-300 ${isActive ? 'bg-amber-50 shadow-sm' : 'group-hover:bg-slate-50'}`}>
           <Icon
-            className={`h-6 w-6 transition-all duration-300 z-10 ${isActive
-              ? 'text-white scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]'
-              : 'text-slate-400 group-hover:text-slate-200'
+            className={`h-6 w-6 transition-all duration-300 ${isActive
+              ? 'text-amber-600 scale-110'
+              : 'text-slate-500 group-hover:text-slate-700'
               }`}
-            strokeWidth={isActive ? 2.5 : 1.5}
+            strokeWidth={isActive ? 2.5 : 2}
           />
-          {isActive && (
-            <span className="absolute -bottom-2 w-1 h-1 bg-primary-400 rounded-full shadow-[0_0_5px_currentColor]"></span>
-          )}
-        </button>
-      </Tooltip>
+        </div>
+
+        {/* Active Dot Indicator */}
+        <div className={`absolute bottom-1 w-1 h-1 rounded-full transition-all duration-500 ${isActive ? 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)] scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
+      </button>
     );
   };
 
   return (
-    <div className="md:hidden fixed bottom-6 left-0 right-0 z-[90] flex justify-center px-4 pointer-events-none">
-      <div className="pointer-events-auto w-full max-w-xs bg-slate-900/90  border border-white/10 text-white shadow-[0_8px_30px_rgb(0,0,0,0.4)] rounded-3xl p-2 flex justify-between items-center relative ring-1 ring-white/5">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-[100] animate-in slide-in-from-bottom duration-500">
+      {/* Glossy Backdrop (Light Mode) */}
+      <div className="absolute inset-0 bg-white/90 backdrop-blur-xl border-t border-slate-200 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]" />
 
+      {/* Decorative Accent Line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/4 h-[2px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent rounded-full" />
+
+      <div className="relative flex justify-around items-center h-16 px-4 pb-safe">
         <NavItem view="home" label="Home" icon={HomeIcon} />
 
-        <div className="relative -mt-8 group">
-          <Tooltip content="Contact Us" position="top">
-            <button
-              onClick={(e) => handleNav(e, 'contact')}
-              aria-label="Contact Us"
-              className={`relative w-16 h-16 flex items-center justify-center rounded-full shadow-2xl border-[3px] border-slate-900 transition-transform duration-300 active:scale-95 hover:-translate-y-1
-                  ${currentView === 'contact'
-                  ? 'bg-gradient-to-tr from-primary-500 to-slate-800 shadow-primary-500/50 scale-110'
-                  : 'bg-gradient-to-tr from-primary-600 to-slate-700 shadow-slate-600/40'
-                }
-                `}
-            >
-              <PhoneIcon className="h-7 w-7 text-white fill-current z-10" strokeWidth="1.5" />
-            </button>
-          </Tooltip>
+        <div className="relative -mt-6">
+          <button
+            onClick={(e) => handleNav(e, 'contact')}
+            aria-label="Contact Us"
+            className={`relative w-14 h-14 flex items-center justify-center rounded-full shadow-[0_8px_25px_rgba(217,119,6,0.25)] transition-all duration-300 active:scale-90 hover:scale-105
+                ${currentView === 'contact'
+                ? 'bg-gradient-to-tr from-amber-500 to-amber-600 ring-4 ring-white shadow-xl'
+                : 'bg-gradient-to-tr from-amber-500 to-amber-600'
+              }
+              `}
+          >
+            <PhoneIcon className="h-6 w-6 text-white drop-shadow-sm relative z-10" strokeWidth="2.5" />
+          </button>
+
+          {/* External Halo Effect */}
+          {currentView === 'contact' && (
+            <div className="absolute -inset-1 rounded-full bg-amber-400/10 animate-pulse z-0" />
+          )}
         </div>
 
         <NavItem view="catalog" label="Catalog" icon={ShoppingCartIcon} />
       </div>
+
+      {/* Safe Area Spacer for iOS Devices */}
+      <div className="h-[env(safe-area-inset-bottom)]" />
     </div>
   );
 }
