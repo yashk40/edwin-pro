@@ -125,7 +125,7 @@ const Footer: React.FC<FooterProps> = memo(({ onNavigate }) => {
                   </a>
                 </li>
                 <li>
-                  <a href="#store" onClick={(e) => handleNav(e, 'store')} className="hover:text-primary-600 transition-colors hover:translate-x-1 inline-block duration-200">
+                  <a href="#catalog" onClick={(e) => handleNav(e, 'catalog')} className="hover:text-primary-600 transition-colors hover:translate-x-1 inline-block duration-200">
                     Full Catalog
                   </a>
                 </li>

@@ -183,7 +183,7 @@ const Home: React.FC<HomeProps> = ({ products, onNavigate, onCategorySelect }) =
                         </FadeIn>
                     </div>
 
-                    <div className="text-center mt-20">
+                    {/* <div className="text-center mt-20">
                         <button
                             onClick={() => onNavigate('store')}
                             className="inline-flex items-center gap-3 text-slate-900 hover:text-primary-600 font-bold uppercase tracking-widest transition-colors group text-sm md:text-base"
@@ -191,7 +191,7 @@ const Home: React.FC<HomeProps> = ({ products, onNavigate, onCategorySelect }) =
                             <span className="border-b-2 border-primary-500 group-hover:border-slate-900 pb-1">View Full Catalog</span>
                             <ArrowRightIcon className="w-4 h-4 md:w-5 md:h-5 transform group-hover:translate-x-1 transition-transform" />
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             </section>
 
