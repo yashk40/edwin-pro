@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block access to admin areas
+Disallow: /admin
+
+# Sitemap location
+Sitemap: https://edwenpro.com/sitemap.xml
